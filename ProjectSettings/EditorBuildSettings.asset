@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/KaiMovementTestZone.unity
+    guid: dc62a620c08180a449020834476b5064
+  - enabled: 1
+    path: Assets/Scenes/KaiBattleTestZone.unity
+    guid: 450a7ebe9d4f6d142b87c8a3f477aaf9
   m_configObjects: {}
