@@ -25,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetFloat("Horizontal", change.x);
         animator.SetFloat("Vertical", change.y);
+
+        float isMoving = (change != Vector2.zero) ? 1f : 0f;
         animator.SetFloat("Speed", change.sqrMagnitude);
     }
 
