@@ -11,6 +11,7 @@ public class PlayerControl : MonoBehaviour
     private Vector2 movement;
 
     private bool canMove = true;
+    private bool inBattle = false;
 
     void Start()
     {
@@ -20,20 +21,24 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canMove) { 
-            // Get input from player
-            movement.x = Input.GetAxisRaw("Horizontal");
-            movement.y = Input.GetAxisRaw("Vertical");
+        if (!inBattle) {
+            if (canMove)
+            {
+                // Get input from player
+                movement.x = Input.GetAxisRaw("Horizontal");
+                movement.y = Input.GetAxisRaw("Vertical");
 
-            // Move the character
-            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-        }   
+                // Move the character
+                rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+            }
 
-        if(Input.GetKeyDown("z"))
-        {
-            canMove = false;
-            SceneManager.LoadScene("KaiBattleTestZone", LoadSceneMode.Additive);
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName("KaiBattleTestZone"));
+            if (Input.GetKeyDown("z"))
+            {
+                canMove = false;
+                inBattle = true;
+                SceneManager.LoadScene("KaiBattleTestZone", LoadSceneMode.Additive);
+                SceneManager.SetActiveScene(SceneManager.GetSceneByName("KaiBattleTestZone"));
+            }
         }
     }
 }

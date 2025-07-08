@@ -5,8 +5,10 @@ using TMPro;
 
 public class HealthBarBehavior : MonoBehaviour
 {
-    public float maxHP;
-    public float HP;
+    public GameObject BattleController;
+
+    private float maxHP;
+    private float HP;
     private float scale;
 
     public GameObject insideBar;
@@ -23,6 +25,11 @@ public class HealthBarBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //update HP and maxHP with values from BattleControl
+        maxHP = BattleController.GetComponent<BattleControl>().playerHPmax;
+        HP = BattleController.GetComponent<BattleControl>().playerHP;
+
+        //resize the HP bar
         scale = HP / maxHP;
         insideBar.transform.localScale = new Vector3(scale, 1, 1);
         HP_text.text = HP.ToString("0");
