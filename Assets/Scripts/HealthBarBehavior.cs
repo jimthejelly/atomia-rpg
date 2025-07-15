@@ -26,8 +26,8 @@ public class HealthBarBehavior : MonoBehaviour
     void Update()
     {
         //update HP and maxHP with values from BattleControl
-        maxHP = BattleController.GetComponent<BattleControl>().playerHPmax;
-        HP = BattleController.GetComponent<BattleControl>().playerHP;
+        maxHP = BattleController.GetComponent<BattleMenuControl>().playerHPmax;
+        HP = BattleController.GetComponent<BattleMenuControl>().playerHP;
 
         //resize the HP bar
         scale = HP / maxHP;
