@@ -6,16 +6,30 @@ using TMPro;
 
 public class BattleMenuControl : MonoBehaviour
 {
-    public GameObject BattleController;
+    //public GameObject BattleController;
 
-    public int menuIndex = 0;
-    private int menuSize = 4;
-    public int menuLevel = 0;
+    private int menuIndex = 0;
+    private int menuLevel = 0;
+    private static int menuSize = 4;
 
+    public GameObject ActionSelect;
     public GameObject TargetSelect;
+    public GameObject Cursor;
+
+    public TMP_Text DescText;
     public TMP_Text Option1Text;
 
-    //public SpriteRenderer spriteRenderer;
+    public int playerHP = 50;
+    public int playerHPmax = 50;
+    public int playerAT = 5;
+
+    public int enemyHP = 20;
+    public int enemyHPmax = 20;
+
+    public string enemyName = "Rock";
+
+    public string[] items = { "Pie" };
+
     public Sprite[] sprites;
 
     // Start is called before the first frame update
@@ -35,7 +49,7 @@ public class BattleMenuControl : MonoBehaviour
                 TargetSelect.SetActive(true);
                 if (menuIndex == 0) //"Fight" selected
                 {
-                    Option1Text.text = BattleController.GetComponent<BattleControl>().enemyName;
+                    Option1Text.text = enemyName;
                 }
                 else if (menuIndex == 1) //"Act" selected
                 {
@@ -43,7 +57,32 @@ public class BattleMenuControl : MonoBehaviour
                 }
                 else if (menuIndex == 2) //"Item" selected
                 {
-                    Option1Text.text = BattleController.GetComponent<BattleControl>().items[0];
+                    Option1Text.text = items[0];
+                }
+                else if (menuIndex == 3) //"Run" selected
+                {
+                    Option1Text.text = "i'll implement running later";
+                }
+            }
+            else if (menuLevel == 1)
+            {
+                if (menuIndex == 0) //"Fight" selected
+                {
+                    TargetSelect.SetActive(false);
+                    enemyHP -= playerAT;
+                    menuLevel = -1;
+                    ActionSelect.SetActive(false);
+                }
+                else if (menuIndex == 1) //"Act" selected
+                {
+                    Option1Text.text = "";
+                    DescText.text = "Rock: 0 AT, 0 DF\nWeak placeholder enemy";
+                    menuLevel = -1;
+                    Cursor.SetActive(false);
+                }
+                else if (menuIndex == 2) //"Item" selected
+                {
+                    Option1Text.text = items[0];
                 }
                 else if (menuIndex == 3) //"Run" selected
                 {
@@ -85,7 +124,7 @@ public class BattleMenuControl : MonoBehaviour
         }
 
         //set menu sprite
-        GetComponent<SpriteRenderer>().sprite = sprites[menuIndex];
+        ActionSelect.GetComponent<SpriteRenderer>().sprite = sprites[menuIndex];
     }
 }
 

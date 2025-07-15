@@ -22,8 +22,8 @@ public class EnemyHealthBarBehavior : MonoBehaviour
     void Update()
     {
         //update HP and maxHP with values from BattleControl
-        maxHP = BattleController.GetComponent<BattleControl>().enemyHPmax;
-        HP = BattleController.GetComponent<BattleControl>().enemyHP;
+        maxHP = BattleController.GetComponent<BattleMenuControl>().enemyHPmax;
+        HP = BattleController.GetComponent<BattleMenuControl>().enemyHP;
 
         //resize the HP bar
         scale = HP / maxHP;

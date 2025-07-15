@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class BattleControl : MonoBehaviour
 {
+    //honestly i might just scrap this whole script, seems easier to just code the whole thing into BattleMenuControl instead of having these two scripts talking to each other
     public int playerHP;
     public int playerHPmax;
     public int playerAT;
 
     public int enemyHP;
     public int enemyHPmax;
-
-    public bool waitingForMenu = true;
-    public int playerAction = 0;
 
     public string enemyName = "Rock";
 
@@ -27,9 +25,6 @@ public class BattleControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(waitingForMenu == false)
-        {
-            
-        }
+
     }
 }
