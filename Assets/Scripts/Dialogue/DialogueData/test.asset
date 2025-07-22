@@ -17,3 +17,8 @@ MonoBehaviour:
     text: AHHHH!!!!
   - speakerName: Arpie
     text: What! What's wrong?
+  responses:
+  - responseText: Hi....
+    dialogueObject: {fileID: 11400000, guid: b0e933aa54b18094d8101ecf93e64148, type: 2}
+  - responseText: wtf
+    dialogueObject: {fileID: 11400000, guid: b0e933aa54b18094d8101ecf93e64148, type: 2}
