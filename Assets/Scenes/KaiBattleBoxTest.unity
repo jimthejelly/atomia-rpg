@@ -122,6 +122,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &330892889
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 330892891}
+  - component: {fileID: 330892890}
+  m_Layer: 0
+  m_Name: BulletsController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &330892890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330892889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 233e0fd3f5d05d747b6de20b000d3724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullettypes:
+  - {fileID: 4491355831780321657, guid: 6d74fd822406d984ab5d10df4f5a9aaa, type: 3}
+  activebullets: []
+--- !u!4 &330892891
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330892889}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &374796322
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +180,7 @@ GameObject:
   - component: {fileID: 374796323}
   - component: {fileID: 374796325}
   - component: {fileID: 374796324}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BattleBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,7 +403,7 @@ GameObject:
   - component: {fileID: 1802651185}
   - component: {fileID: 1802651186}
   - component: {fileID: 1802651187}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerDot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,3 +558,4 @@ SceneRoots:
   - {fileID: 1755741431}
   - {fileID: 1802651183}
   - {fileID: 374796323}
+  - {fileID: 330892891}
