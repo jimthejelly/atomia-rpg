@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ac83e8ab88877c4eafa098065a1551f, type: 3}
+  m_Name: intro1
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - speakerName: Henry
+    text: AHHH!!!!
+  - speakerName: Henry
+    text: You scared me! I thought you were one of the guards!
+  - speakerName: Arpie
+    text: Hey there little firefly! Sorry for almost running into you...
+  - speakerName: Arpie
+    text: "I\u2019m ARPIE!"
+  - speakerName: Henry
+    text: "Hmph! I\u2019m not a firefly! The name\u2019s HENRY, the hydrogen atom!"
+  - speakerName: Henry
+    text: "\u2026 You aren\u2019t with the guards, are you?"
+  - speakerName: Arpie
+    text: "Huh? The guards? No, I\u2019m not with them."
+  - speakerName: Henry
+    text: ...
+  - speakerName: Arpie
+    text: ...
+  - speakerName: Arpie
+    text: "Look, are you lost? You don\u2019t look like you\u2019re from around here."
+  - speakerName: Henry
+    text: "Well, I\u2019m not exactly lost\u2026"
+  - speakerName: Henry
+    text: "I\u2019m running away!"
+  - speakerName: Arpie
+    text: "Oh. Uh\u2026 good for you?"
+  - speakerName: Arpie
+    text: "It\u2019s kinda dangerous to be out alone, though."
+  - speakerName: Arpie
+    text: "I don\u2019t know what you\u2019re running away from, but you\u2019re
+      only running to more problems if you stay here."
+  - speakerName: Henry
+    text: "No! The forest is safer for me\u2026 I think..."
+  - speakerName: Henry
+    text: "Look, I\u2019m trying to get away from the guards. They have been trying
+      to capture me for a while now!"
+  - speakerName: Henry
+    text: "They\u2026 uh, imprisoned the rest of my family, and I was the only one
+      that managed to escape."
+  - speakerName: Henry
+    text: I need to stay alive to find a way to free them, and not getting caught
+      is step one.
+  - speakerName: Arpie
+    text: "Huh\u2026"
+  - speakerName: Arpie
+    text: "Well\u2026 you should be safer now, the guards don\u2019t usually come
+      around to the Outer Outskirts."
+  - speakerName: Arpie
+    text: "It\u2019s too far away from the Central Kingdom for them to even bother
+      stationing guards around."
+  - speakerName: Arpie
+    text: The only thing that is an indication of their takeover here is the Draining.
+  responses: []

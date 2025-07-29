@@ -21870,7 +21870,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.08004272, y: 0.120048285, z: -10}
+  m_LocalPosition: {x: -0.08003223, y: 0.16550326, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -25890,8 +25890,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 59.90672, y: -15.485119}
-      - {x: 60.029945, y: 7.408479}
+    - - {x: 60.475628, y: -15.826464}
+      - {x: 60.475628, y: -16.084576}
+      - {x: 60.675224, y: 7.537537}
       - {x: -11.524461, y: 7.732785}
       - {x: -11.530072, y: -15.754882}
   m_UseDelaunayMesh: 0
@@ -26598,6 +26599,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueObject: {fileID: 11400000, guid: 813ec69c89c5cc44382b39799ac952a3, type: 2}
+  canRepeat: 1
+  resetOnExit: 0
 --- !u!1 &1582387777
 GameObject:
   m_ObjectHideFlags: 0
@@ -31636,10 +31639,10 @@ EdgeCollider2D:
   m_EdgeRadius: 0
   m_Points:
   - {x: 59.651924, y: -12.612805}
-  - {x: 59.08005, y: -16.283152}
+  - {x: 59.633137, y: -16.467514}
   - {x: -12.431677, y: -16.409122}
   - {x: -12.23748, y: 6.568727}
-  - {x: 58.83143, y: 6.4630227}
+  - {x: 59.661057, y: 6.8317466}
   - {x: 59.505283, y: -6.9761124}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
@@ -31778,6 +31781,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueObject: {fileID: 11400000, guid: f6b9966014f009f41b3b6dd48662dace, type: 2}
+  canRepeat: 0
+  resetOnExit: 0
 --- !u!58 &2057267398
 CircleCollider2D:
   m_ObjectHideFlags: 0
