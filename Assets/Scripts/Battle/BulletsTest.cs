@@ -8,14 +8,13 @@ public class BulletsTest : MonoBehaviour
     double spawntimer = 0;
     double roundtimer = 0;
     int pattern = 0;
-    bool inprogress = false;
-    public List<GameObject> activebullets;
+    public bool inprogress = false;
+    public GameObject lastbullet;
 
     // Start is called before the first frame update
     void Start()
     {
-        inprogress = true;
-        activebullets = new List<GameObject>();
+        //inprogress = true;
     }
 
     // Update is called once per frame
@@ -30,7 +29,7 @@ public class BulletsTest : MonoBehaviour
             if (pattern == 0)
             {
                 //generates a new bullet after a certain amount of time
-                if (spawntimer > 0.25)
+                if (spawntimer > 0.5)
                 {
                     int dir = Random.Range(0, 4);
                     float xypos = Random.Range(-1.4f, 1.4f);
@@ -59,7 +58,7 @@ public class BulletsTest : MonoBehaviour
                     GenerateBullet(0, x, y);
 
                     //change direction of generated bullet
-                    activebullets[activebullets.Count - 1].GetComponent<BulletSimple>().dir = dir;
+                    lastbullet.GetComponent<BulletSimple>().dir = dir;
 
                     //reset spawntimer
                     spawntimer = 0;
@@ -68,6 +67,8 @@ public class BulletsTest : MonoBehaviour
                 if (roundtimer > 10)
                 {
                     inprogress = false;
+                    spawntimer = 0;
+                    roundtimer = 0;
                 }
             }
         }
@@ -80,7 +81,6 @@ public class BulletsTest : MonoBehaviour
 
         Vector3 pos = new Vector3(x, y, 0);
         Quaternion rot = new Quaternion(0, 0, 0, 0);
-        GameObject temp = Instantiate(bullettypes[id],pos,rot);
-        activebullets.Add(temp);
+        lastbullet = Instantiate(bullettypes[id],pos,rot);
     }
 }

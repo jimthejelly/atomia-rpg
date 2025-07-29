@@ -33,10 +33,16 @@ public class BulletSimple : MonoBehaviour
             transform.position += new Vector3(-1*speed, 0, 0) * Time.deltaTime;
         }
 
+        //destroy when out of bounds
+        if (transform.position.x < -3 || transform.position.x > 3 || transform.position.y < -3 || transform.position.y > 3) {
+            Destroy(gameObject);
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Text: colliding!");
+        Destroy(gameObject);
     }
 }

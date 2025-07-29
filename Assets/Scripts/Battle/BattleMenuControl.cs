@@ -15,6 +15,9 @@ public class BattleMenuControl : MonoBehaviour
     public GameObject ActionSelect;
     public GameObject TargetSelect;
     public GameObject Cursor;
+    public GameObject BattleBox;
+    public GameObject PlayerDot;
+    public GameObject BulletsController;
 
     public TMP_Text DescText;
     public TMP_Text Option1Text;
@@ -30,17 +33,22 @@ public class BattleMenuControl : MonoBehaviour
 
     public string[] items = { "Pie" };
 
-    public Sprite[] sprites;
+    public Sprite[] menusprites;
+
+    bool bulletsEnabled = false;
 
     // Start is called before the first frame update
     void Start()
     {
         TargetSelect.SetActive(false);
+        BattleBox.SetActive(false);
+        PlayerDot.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        //MENU STUFF
         if (Input.GetKeyDown("z")) //select
         {
             if (menuLevel == 0)
@@ -70,14 +78,15 @@ public class BattleMenuControl : MonoBehaviour
                 {
                     TargetSelect.SetActive(false);
                     enemyHP -= playerAT;
-                    menuLevel = -1;
+                    //menuLevel = -1;
                     ActionSelect.SetActive(false);
+                    EnableBullets();
                 }
                 else if (menuIndex == 1) //"Act" selected
                 {
                     Option1Text.text = "";
                     DescText.text = "Rock: 0 AT, 0 DF\nWeak placeholder enemy";
-                    menuLevel = -1;
+                    //menuLevel = -1;
                     Cursor.SetActive(false);
                 }
                 else if (menuIndex == 2) //"Item" selected
@@ -124,7 +133,40 @@ public class BattleMenuControl : MonoBehaviour
         }
 
         //set menu sprite
-        ActionSelect.GetComponent<SpriteRenderer>().sprite = sprites[menuIndex];
+        ActionSelect.GetComponent<SpriteRenderer>().sprite = menusprites[menuIndex];
+
+
+
+        //BULLET STUFF
+        if(bulletsEnabled && BulletsController.GetComponent<BulletsTest>().inprogress == false)
+        {
+            DisableBullets();
+        }
+    }
+
+    void EnableBullets()
+    {
+        BattleBox.SetActive(true);
+        PlayerDot.SetActive(true);
+
+        BulletsController.GetComponent<BulletsTest>().inprogress = true;
+        PlayerDot.GetComponent<BattleMovement>().canMove = true;
+
+        bulletsEnabled = true;
+    }
+
+    void DisableBullets()
+    {
+        BattleBox.SetActive(false);
+        PlayerDot.SetActive(false);
+
+        PlayerDot.GetComponent<BattleMovement>().canMove = false;
+
+        ActionSelect.SetActive(true);
+        menuLevel = 0;
+        menuIndex = 0;
+
+        bulletsEnabled = false;
     }
 }
 
