@@ -10,25 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ac83e8ab88877c4eafa098065a1551f, type: 3}
-  m_Name: intro
+  m_Name: intro3
   m_EditorClassIdentifier: 
   dialogueLines:
-  - speakerName: Henry
-    text: AHHH!!!!
-  - speakerName: Henry
-    text: You scared me! I thought you were one of the guards!
   - speakerName: Arpie
-    text: Hey there little firefly! Sorry for almost running into you...
-  - speakerName: Arpie
-    text: "I\u2019m ARPIE!"
+    text: "It\u2019s a rabbit..."
   - speakerName: Henry
-    text: "Hmph! I\u2019m not a firefly! The name\u2019s HENRY, the hydrogen atom!"
+    text: Oh.
   - speakerName: Henry
-    text: "\u2026 You aren\u2019t with the guards, are you?"
+    text: "Hehe, sorry, I\u2019m a little on edge."
   - speakerName: Arpie
-    text: "Huh? The guards? No, I\u2019m not with them."
+    text: ... Right.
+  - speakerName: Arpie
+    text: "Look, it\u2019s going to get dark soon, and the forest is not where you
+      want to be at night.\r"
+  - speakerName: Arpie
+    text: "My town isn\u2019t too far away from here. I was just heading back, so
+      you can come along if you have nowhere else to go."
   - speakerName: Henry
-    text: ...
-  - speakerName: Arpie
-    text: ...
+    text: I...
   responses: []
