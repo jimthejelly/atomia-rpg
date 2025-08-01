@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BulletSimple : MonoBehaviour
 {
     public int dir; //0 up, 1 right, 2 down, 3 left
     public float speed;
 
+    public UnityEvent hitBulletSimple;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        hitBulletSimple.AddListener(TestMethod);
     }
 
     // Update is called once per frame
@@ -42,7 +45,13 @@ public class BulletSimple : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Text: colliding!");
+        hitBulletSimple.Invoke();
         Destroy(gameObject);
+    }
+
+    private void TestMethod()
+    {
+        Debug.Log("Hit BulletSimple!");
+
     }
 }

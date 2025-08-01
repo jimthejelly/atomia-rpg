@@ -11,6 +11,8 @@ public class BulletsTest : MonoBehaviour
     public bool inprogress = false;
     public GameObject lastbullet;
 
+    private float spawninterval = 0.5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +31,7 @@ public class BulletsTest : MonoBehaviour
             if (pattern == 0)
             {
                 //generates a new bullet after a certain amount of time
-                if (spawntimer > 0.5)
+                if (spawntimer > spawninterval)
                 {
                     int dir = Random.Range(0, 4);
                     float xypos = Random.Range(-1.4f, 1.4f);
@@ -61,7 +63,7 @@ public class BulletsTest : MonoBehaviour
                     lastbullet.GetComponent<BulletSimple>().dir = dir;
 
                     //reset spawntimer
-                    spawntimer = 0;
+                    spawntimer -= spawninterval;
                 }
                 //exits the current pattern after a certain amount of time
                 if (roundtimer > 10)
