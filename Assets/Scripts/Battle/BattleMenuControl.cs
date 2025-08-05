@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+//using UnityEngine.Events;
 
 
 public class BattleMenuControl : MonoBehaviour
@@ -43,6 +44,7 @@ public class BattleMenuControl : MonoBehaviour
         TargetSelect.SetActive(false);
         BattleBox.SetActive(false);
         PlayerDot.SetActive(false);
+        //hitBulletSimple.AddListener(PlayerDamage(5));
     }
 
     // Update is called once per frame
@@ -167,6 +169,11 @@ public class BattleMenuControl : MonoBehaviour
         menuIndex = 0;
 
         bulletsEnabled = false;
+    }
+
+    void PlayerDamage(int damage)
+    {
+        playerHP -= damage;
     }
 }
 
