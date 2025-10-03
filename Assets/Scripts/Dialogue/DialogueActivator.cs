@@ -19,7 +19,6 @@ public class DialogueActivator : MonoBehaviour, IInteractable
             if(player.Interactable is DialogueActivator dialogueActivator && dialogueActivator == this) {
                 player.Interactable = null;
             }
-
             if (resetOnExit)
             {
                 hasInteracted = false;
