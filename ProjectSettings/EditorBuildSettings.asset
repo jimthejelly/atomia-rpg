@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/KaiBattleTestZone.unity
     guid: 450a7ebe9d4f6d142b87c8a3f477aaf9
+  - enabled: 0
+    path: Assets/Scenes/Main Menu.unity
+    guid: 2fcbdac7c58844f48a842d850d41b14d
+  - enabled: 1
+    path: Assets/Scenes/SettingsMenu.unity
+    guid: efdf24421c55f165f9baf96dbe8a2ff8
   m_configObjects: {}
