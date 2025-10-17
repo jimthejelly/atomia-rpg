@@ -9,15 +9,15 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public bool playerTurn = false;
+    public bool playerTurn = true;
     public bool enemyMoving = false;
     [SerializeField] private GameObject playerButtons;
 
     [SerializeField] private GameObject player, enemy, turnIndicator;
-    [SerializeField] private TMP_Text cText, oText;
+    [SerializeField] private TMP_Text cText, oText, minigamePromptText;
     [SerializeField] private GameObject minigame, goalcircle, movingcircle;
 
-    private float minigametimeRemaining;
+    public float minigametimeRemaining;
     private float minigameMaxTime = 3f;
     private float damageMult = 1f;
 
@@ -41,30 +41,41 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        swapTurn();
+        addElement("c", 2);
+        addElement("o", 2);
+    }
+
+    public void addElement(string element, int num)
+    {
+        if (element == "c")
+        {
+            c += num;
+            cText.text = "C: " + c;
+            return;
+        }
+        if (element == "o")
+        {
+            o += num;
+            oText.text = "O: " + o;
+        }
+        else
+        {
+            return;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            swapTurn();
-        }
-
         if (Input.GetKeyDown(KeyCode.C))
         {
-            c += 3;
-            o += 3;
-            updateElementText();
+            addElement("c", 3);
+            addElement("o", 3);
         }
 
         if (!playerTurn && !enemyMoving)
         {
-            Debug.Log("enemy attacks!");
-            Invoke("swapTurn", 1f);
-            enemyMoving = true;
-            
+            StartCoroutine(EnemyTurn());
         }
 
         if (minigametimeRemaining > 0f)
@@ -77,9 +88,10 @@ public class GameManager : MonoBehaviour
             minigametimeRemaining = 0f;
             movingcircle.transform.localScale = new Vector3(2f, 2f, 2f);
             minigame.SetActive(false);
+            minigamePromptText.gameObject.SetActive(false);
         }
         
-        if (minigametimeRemaining > 0f && Input.GetKeyDown(KeyCode.F))
+        if (minigametimeRemaining > 0f && Input.GetKeyDown(KeyCode.Space))
         {
             float desiredSize = goalcircle.transform.localScale.x;
             float realSize = movingcircle.transform.localScale.x;
@@ -130,20 +142,35 @@ public class GameManager : MonoBehaviour
     {
         minigametimeRemaining = minigameMaxTime;
         minigame.SetActive(true);
+        minigamePromptText.gameObject.SetActive(true);
     }
-    
+
     public IEnumerator MoveCO2()
     {
-        if (c < 1 && o < 2)
+        if (c < 1 || o < 2)
         {
             Debug.Log("not enough atoms!");
             yield break;
         }
-        c -= 1;
-        o -= 2;
+        addElement("c", -1);
+        addElement("o", -2);
         startMinigame();
         yield return new WaitUntil(() => minigametimeRemaining <= 0);
         Debug.Log("did " + 5 * damageMult + " damage!");
         damageMult = 1f;
+    }
+    
+    public IEnumerator EnemyTurn() 
+    {
+        if (playerTurn)
+        {
+            Debug.Log("enemy cant attack during your turn!");
+            yield break;
+        }
+        Debug.Log("enemy attacks!");
+        enemyMoving = true;
+        yield return new WaitForSeconds(1.5f);
+        enemyMoving = false;
+        swapTurn();
     }
 }
