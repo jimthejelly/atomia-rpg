@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Initial_Chase : MonoBehaviour
 {
-    public float speed = 3f;
+    public float speed = 4.5f;
     private Transform target;
     public bool chaseOn = false;
 
@@ -15,16 +15,17 @@ public class Initial_Chase : MonoBehaviour
         }
     }
 
+    //chase start
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag == "Player") {
             target = other.transform;
             chaseOn = true;
-            Debug.Log("Chase start!");
         }
 
+        //chase stop
         if (other.gameObject.tag == "ChaseStop") {
             chaseOn = false;
-            Debug.Log("Stop chase triggered.");
         }
     }
 }
+
