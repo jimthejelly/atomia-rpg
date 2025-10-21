@@ -18,6 +18,12 @@ public class ButtonScript : MonoBehaviour
         if (move == "co2")
         {
             StartCoroutine(GameManager.Instance.MoveCO2());
+            return;
+        }
+        if (move == "co")
+        {
+            StartCoroutine(GameManager.Instance.MoveCO());
         }
     }
+
 }

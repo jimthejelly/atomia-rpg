@@ -18,10 +18,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject minigame, goalcircle, movingcircle;
 
     public float minigametimeRemaining;
-    private float minigameMaxTime = 3f;
+    private float minigameMaxTime = 1f;
     private float damageMult = 1f;
 
     public int c, o = 0;
+    private Color movingCircleColor = new Color(160, 81, 255, 75);
 
 
     private void Awake()
@@ -85,6 +86,7 @@ public class GameManager : MonoBehaviour
             movingcircle.transform.localScale *= 0.995f;
         } else if (minigametimeRemaining <= 0f)
         {
+            
             minigametimeRemaining = 0f;
             movingcircle.transform.localScale = new Vector3(2f, 2f, 2f);
             minigame.SetActive(false);
@@ -158,6 +160,11 @@ public class GameManager : MonoBehaviour
         yield return new WaitUntil(() => minigametimeRemaining <= 0);
         Debug.Log("did " + 5 * damageMult + " damage!");
         damageMult = 1f;
+    }
+
+    public IEnumerator MoveCO()
+    {
+        yield return new WaitForSeconds(1f);
     }
     
     public IEnumerator EnemyTurn() 
