@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
-
-public class BackButtonScript : MonoBehaviour
+public class KeyButtonScript : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -15,11 +16,6 @@ public class BackButtonScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-    }
-    
-    public void CloseMenu()
-    {
-        SceneManager.UnloadSceneAsync("SettingsMenu");
+        
     }
 }

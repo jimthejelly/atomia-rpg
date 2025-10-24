@@ -64,7 +64,7 @@ public class MainMenuOptions : MonoBehaviour
                 break;
             case 1:
                 Debug.Log("Options");
-                SceneManager.LoadScene("SettingsMenu");
+                SceneManager.LoadScene("SettingsMenu", LoadSceneMode.Additive);
                 break;
             case 2:
                 Debug.Log("Quit");

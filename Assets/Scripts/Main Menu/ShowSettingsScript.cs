@@ -28,11 +28,16 @@ public class ShowSettingsScript : MonoBehaviour
         // Check if the 'M' key is pressed
         if (Input.GetKeyDown(KeyCode.M))
         {
+            print("HELLO");
             // Check if the settings menu is NOT already loaded
             if (!IsSceneLoaded(settingsSceneName))
             {
                 // Load the settings menu ON TOP of the current scene
                 SceneManager.LoadScene(settingsSceneName, LoadSceneMode.Additive);
+            }
+            else
+            {
+                SceneManager.UnloadSceneAsync(settingsSceneName);
             }
         }
     }
