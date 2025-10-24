@@ -119,8 +119,8 @@ public class GameManager : MonoBehaviour
         playerTurn = !playerTurn;
         if (playerTurn) // state during player turn
         {
-            c += 2;
-            o += 2;
+            addElement("c", 2);
+            addElement("o", 2);
 
             enemyMoving = false;
             decrementDebuffs();
