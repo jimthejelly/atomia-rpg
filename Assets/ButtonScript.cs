@@ -6,7 +6,11 @@ public class ButtonScript : MonoBehaviour
 {
     public void EndTurn()
     {
-        GameManager.Instance.swapTurn();
+        if (GameManager.Instance.playerTurn)
+        {
+            GameManager.Instance.swapTurn();
+        }
+        
     }
 
     public void DoMove(string move)

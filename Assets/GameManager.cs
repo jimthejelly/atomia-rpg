@@ -11,18 +11,20 @@ public class GameManager : MonoBehaviour
 
     public bool playerTurn = true;
     public bool enemyMoving = false;
+    public int coDebuffTurns = 0;
+    private string currentMove = "";
     [SerializeField] private GameObject playerButtons;
 
-    [SerializeField] private GameObject player, enemy, turnIndicator;
+    [SerializeField] private GameObject player, enemy, turnIndicator, debuffIcon;
     [SerializeField] private TMP_Text cText, oText, minigamePromptText;
     [SerializeField] private GameObject minigame, goalcircle, movingcircle;
 
     public float minigametimeRemaining;
     private float minigameMaxTime = 1f;
-    private float damageMult = 1f;
+    private Dictionary<string, float> playerDamageMults = new Dictionary<string, float>();
+    private Dictionary<string, float> enemyDamageMults = new Dictionary<string, float>();
 
     public int c, o = 0;
-    private Color movingCircleColor = new Color(160, 81, 255, 75);
 
 
     private void Awake()
@@ -79,12 +81,12 @@ public class GameManager : MonoBehaviour
             StartCoroutine(EnemyTurn());
         }
 
-        if (minigametimeRemaining > 0f)
+        if (minigametimeRemaining > 0f) // reduce the size of the moving circle
         {
             float desiredSize = goalcircle.transform.localScale.x;
             minigametimeRemaining -= Time.deltaTime;
             movingcircle.transform.localScale *= 0.995f;
-        } else if (minigametimeRemaining <= 0f)
+        } else if (minigametimeRemaining <= 0f) // end minigame when time is up
         {
             
             minigametimeRemaining = 0f;
@@ -93,14 +95,14 @@ public class GameManager : MonoBehaviour
             minigamePromptText.gameObject.SetActive(false);
         }
         
-        if (minigametimeRemaining > 0f && Input.GetKeyDown(KeyCode.Space))
+        if (minigametimeRemaining > 0f && Input.GetKeyDown(KeyCode.Space)) // check if player won the minigame
         {
             float desiredSize = goalcircle.transform.localScale.x;
             float realSize = movingcircle.transform.localScale.x;
             if (Math.Abs(desiredSize - realSize) < 0.2f * desiredSize)
             {
                 Debug.Log("Success!");
-                damageMult = 1.5f;
+                doMinigameEffect(currentMove);
                 // minigametimeRemaining = 0f;
             }
             else
@@ -121,6 +123,7 @@ public class GameManager : MonoBehaviour
             o += 2;
 
             enemyMoving = false;
+            decrementDebuffs();
 
             Vector3 trianglepos = player.transform.position;
             trianglepos.y += 1.5f;
@@ -128,6 +131,7 @@ public class GameManager : MonoBehaviour
         }
         else // state during enemy turn
         {
+            
             Vector3 trianglepos = enemy.transform.position;
             trianglepos.y += 1.5f;
             turnIndicator.transform.position = trianglepos;
@@ -147,6 +151,56 @@ public class GameManager : MonoBehaviour
         minigamePromptText.gameObject.SetActive(true);
     }
 
+    private void doMinigameEffect(string move) // applies positive effect of winning the minigame
+    {
+        if (move == "co2")
+        {
+            playerDamageMults.Add("co2", 1.5f);
+        }
+        else if (move == "co")
+        {
+            coDebuffTurns += 1;
+        }
+        else
+        {
+            Debug.Log("Move " + move + " does not exist!");
+        }
+    }
+
+    public void decrementDebuffs() // decrements debuff timers and removes effects after they're done
+    {
+        if (coDebuffTurns > 0)
+        {
+            coDebuffTurns--;
+            if (coDebuffTurns == 0)
+            {
+                enemyDamageMults.Remove("co");
+            }
+        }
+        if (enemyDamageMults.Count == 0)
+        {
+            debuffIcon.SetActive(false);
+        }
+    }
+
+    private float calculateTotalPlayerDamage(float baseDamage) // calculates total player damage
+    {
+        foreach (float mult in playerDamageMults.Values)
+        {
+            baseDamage *= mult;
+        }
+        return baseDamage;
+    }
+
+    private float calculateTotalEnemyDamage(float baseDamage) // calculates total enemy damage
+    {
+        foreach (float mult in enemyDamageMults.Values)
+        {
+            baseDamage *= mult;
+        }
+        return baseDamage;
+    }
+
     public IEnumerator MoveCO2()
     {
         if (c < 1 || o < 2)
@@ -156,15 +210,31 @@ public class GameManager : MonoBehaviour
         }
         addElement("c", -1);
         addElement("o", -2);
+        currentMove = "co2";
         startMinigame();
         yield return new WaitUntil(() => minigametimeRemaining <= 0);
-        Debug.Log("did " + 5 * damageMult + " damage!");
-        damageMult = 1f;
+        Debug.Log("did " + calculateTotalPlayerDamage(5) + " damage!");
+        playerDamageMults.Remove("co2");
+        currentMove = "";
     }
 
     public IEnumerator MoveCO()
     {
-        yield return new WaitForSeconds(1f);
+        if (c < 2 || o < 2)
+        {
+            Debug.Log("not enough atoms!");
+            yield break;
+        }
+        addElement("c", -2);
+        addElement("o", -2);
+        currentMove = "co";
+        startMinigame();
+        yield return new WaitUntil(() => minigametimeRemaining <= 0);
+        coDebuffTurns += 2;
+        Debug.Log("debuffed enemies for " + coDebuffTurns + " turns!");
+        enemyDamageMults.Add("co", 0.85f);
+        debuffIcon.SetActive(true);
+        currentMove = "";
     }
     
     public IEnumerator EnemyTurn() 
@@ -174,7 +244,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("enemy cant attack during your turn!");
             yield break;
         }
-        Debug.Log("enemy attacks!");
+        Debug.Log("enemy attacks for " + calculateTotalEnemyDamage(7) + " damage!");
         enemyMoving = true;
         yield return new WaitForSeconds(1.5f);
         enemyMoving = false;
