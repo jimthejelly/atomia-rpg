@@ -13,16 +13,20 @@ public class GameManager : MonoBehaviour
     public bool enemyMoving = false;
     public int coDebuffTurns = 0;
     private string currentMove = "";
+    public int partySize = 1;
     [SerializeField] private GameObject playerButtons;
 
     [SerializeField] private GameObject player, enemy, turnIndicator, debuffIcon;
-    [SerializeField] private TMP_Text cText, oText, minigamePromptText;
+    [SerializeField] private TMP_Text cText, oText, minigamePromptText, partyHealthText;
     [SerializeField] private GameObject minigame, goalcircle, movingcircle;
 
     public float minigametimeRemaining;
     private float minigameMaxTime = 1f;
     private Dictionary<string, float> playerDamageMults = new Dictionary<string, float>();
     private Dictionary<string, float> enemyDamageMults = new Dictionary<string, float>();
+
+    public List<float> partyHealth = new List<float>();
+    public List<GameObject> enemies = new List<GameObject>();
 
     public int c, o = 0;
 
@@ -46,6 +50,10 @@ public class GameManager : MonoBehaviour
     {
         addElement("c", 2);
         addElement("o", 2);
+        for(int i = 0; i < partySize; i++)
+        {
+            partyHealth.Add(100);
+        }
     }
 
     public void addElement(string element, int num)
@@ -192,7 +200,7 @@ public class GameManager : MonoBehaviour
         return baseDamage;
     }
 
-    private float calculateTotalEnemyDamage(float baseDamage) // calculates total enemy damage
+    public float calculateTotalEnemyDamage(float baseDamage) // calculates total enemy damage
     {
         foreach (float mult in enemyDamageMults.Values)
         {
@@ -236,8 +244,8 @@ public class GameManager : MonoBehaviour
         debuffIcon.SetActive(true);
         currentMove = "";
     }
-    
-    public IEnumerator EnemyTurn() 
+
+    public IEnumerator EnemyTurn()
     {
         if (playerTurn)
         {
@@ -249,5 +257,18 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         enemyMoving = false;
         swapTurn();
+    }
+    
+    public void changePlayerHealth(int target, float amt)
+    {
+        partyHealth[target] += amt;
+        string newPartyHealthString = "";
+        for (int i = 0; i < partySize - 1; i++)
+        {
+            newPartyHealthString += "Member " + (i + 1) + ": ";
+            newPartyHealthString += partyHealth[i] + ", ";
+        }
+        newPartyHealthString += "Member " + (partySize - 1) + ": " + partyHealth[partySize - 1];
+        partyHealthText.text = newPartyHealthString;
     }
 }
