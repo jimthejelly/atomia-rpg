@@ -9,7 +9,6 @@ public class ChaseStop : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player")) {
             chase_scipt.chaseOn = false;
-            Debug.Log("Player entered bounds. Chase stopped.");
         }
     }
 }

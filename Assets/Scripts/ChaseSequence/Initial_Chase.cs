@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Initial_Chase : MonoBehaviour
 {
-    public float speed = 4.5f;
+    public float speed = 4f;
     private Transform target;
     public bool chaseOn = false;
 
+    //follow player
     private void Update() {
         if(chaseOn && target!=null) {
             float step = speed*Time.deltaTime;
