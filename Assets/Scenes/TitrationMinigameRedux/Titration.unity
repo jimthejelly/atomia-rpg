@@ -122,6 +122,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1 &296669336
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,6 +189,8 @@ Transform:
   - {fileID: 1063317627}
   m_Father: {fileID: 296669337}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> 75fbb1b (Update text ui, adding clickable function)
 --- !u!1 &515627469
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +225,10 @@ Transform:
   - {fileID: 1577653996}
   - {fileID: 1427768214}
   - {fileID: 1846287226}
+<<<<<<< HEAD
   - {fileID: 614974767}
+=======
+>>>>>>> 75fbb1b (Update text ui, adding clickable function)
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &614313847
@@ -317,6 +323,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1 &614974766
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,6 +386,8 @@ MonoBehaviour:
   onChargeChanged:
     m_PersistentCalls:
       m_Calls: []
+=======
+>>>>>>> 75fbb1b (Update text ui, adding clickable function)
 --- !u!1 &644375507
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,6 +556,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+<<<<<<< HEAD
 --- !u!1 &665602550
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,6 +590,8 @@ Transform:
   - {fileID: 1970770440}
   m_Father: {fileID: 296669337}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> 75fbb1b (Update text ui, adding clickable function)
 --- !u!1 &767080036
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,10 +686,15 @@ GameObject:
   m_Component:
   - component: {fileID: 839620462}
   - component: {fileID: 839620463}
+<<<<<<< HEAD
   - component: {fileID: 839620464}
   - component: {fileID: 839620465}
   m_Layer: 0
   m_Name: CarbonButton
+=======
+  m_Layer: 0
+  m_Name: Carbon
+>>>>>>> 75fbb1b (Update text ui, adding clickable function)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -750,6 +767,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+<<<<<<< HEAD
 --- !u!114 &839620464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -811,6 +829,8 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 20, y: 20}
   m_EdgeRadius: 0
+=======
+>>>>>>> 75fbb1b (Update text ui, adding clickable function)
 --- !u!1 &1020429702
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,10 +841,16 @@ GameObject:
   m_Component:
   - component: {fileID: 1020429703}
   - component: {fileID: 1020429704}
+<<<<<<< HEAD
   - component: {fileID: 1020429706}
   - component: {fileID: 1020429707}
   m_Layer: 0
   m_Name: BoronButton
+=======
+  - component: {fileID: 1020429705}
+  m_Layer: 0
+  m_Name: Boron
+>>>>>>> 75fbb1b (Update text ui, adding clickable function)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -897,7 +923,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+<<<<<<< HEAD
 --- !u!114 &1020429706
+=======
+--- !u!114 &1020429705
+>>>>>>> 75fbb1b (Update text ui, adding clickable function)
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -906,6 +936,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1020429702}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: 9440c716fc5c0fa45b71b34d22af98c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1042,6 +1073,43 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+=======
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+>>>>>>> 75fbb1b (Update text ui, adding clickable function)
 --- !u!1 &1206203844
 GameObject:
   m_ObjectHideFlags: 0
@@ -1074,6 +1142,7 @@ Transform:
   - {fileID: 644375508}
   - {fileID: 1630962621}
   - {fileID: 664818344}
+<<<<<<< HEAD
   - {fileID: 1611127586}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1161,6 +1230,10 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+=======
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> 75fbb1b (Update text ui, adding clickable function)
 --- !u!1 &1427768213
 GameObject:
   m_ObjectHideFlags: 0
@@ -1171,10 +1244,15 @@ GameObject:
   m_Component:
   - component: {fileID: 1427768214}
   - component: {fileID: 1427768215}
+<<<<<<< HEAD
   - component: {fileID: 1427768216}
   - component: {fileID: 1427768217}
   m_Layer: 0
   m_Name: NitrogenButton
+=======
+  m_Layer: 0
+  m_Name: Nitrogen
+>>>>>>> 75fbb1b (Update text ui, adding clickable function)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1247,6 +1325,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+<<<<<<< HEAD
 --- !u!114 &1427768216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1308,6 +1387,8 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.16, y: 2.33}
   m_EdgeRadius: 0
+=======
+>>>>>>> 75fbb1b (Update text ui, adding clickable function)
 --- !u!1 &1577653995
 GameObject:
   m_ObjectHideFlags: 0
@@ -1318,10 +1399,15 @@ GameObject:
   m_Component:
   - component: {fileID: 1577653996}
   - component: {fileID: 1577653997}
+<<<<<<< HEAD
   - component: {fileID: 1577653998}
   - component: {fileID: 1577653999}
   m_Layer: 0
   m_Name: HydrogenButton
+=======
+  m_Layer: 0
+  m_Name: Hydrogen
+>>>>>>> 75fbb1b (Update text ui, adding clickable function)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1394,6 +1480,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+<<<<<<< HEAD
 --- !u!114 &1577653998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1539,6 +1626,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+=======
+>>>>>>> 75fbb1b (Update text ui, adding clickable function)
 --- !u!1 &1630962620
 GameObject:
   m_ObjectHideFlags: 0
@@ -1632,7 +1721,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1785179119}
+<<<<<<< HEAD
   - component: {fileID: 1785179120}
+=======
+>>>>>>> 75fbb1b (Update text ui, adding clickable function)
   m_Layer: 0
   m_Name: Scale
   m_TagString: Untagged
@@ -1658,6 +1750,7 @@ Transform:
   - {fileID: 1938635143}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!114 &1785179120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1765,6 +1858,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+=======
+>>>>>>> 75fbb1b (Update text ui, adding clickable function)
 --- !u!1 &1846287225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1775,10 +1870,15 @@ GameObject:
   m_Component:
   - component: {fileID: 1846287226}
   - component: {fileID: 1846287227}
+<<<<<<< HEAD
   - component: {fileID: 1846287228}
   - component: {fileID: 1846287229}
   m_Layer: 0
   m_Name: OxygenButton
+=======
+  m_Layer: 0
+  m_Name: Oxygen
+>>>>>>> 75fbb1b (Update text ui, adding clickable function)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1851,6 +1951,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+<<<<<<< HEAD
 --- !u!114 &1846287228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1912,6 +2013,8 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.25, y: 2.25}
   m_EdgeRadius: 0
+=======
+>>>>>>> 75fbb1b (Update text ui, adding clickable function)
 --- !u!1 &1892659083
 GameObject:
   m_ObjectHideFlags: 0
@@ -2080,6 +2183,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+<<<<<<< HEAD
 --- !u!1 &1970770439
 GameObject:
   m_ObjectHideFlags: 0
@@ -2164,6 +2268,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+=======
+>>>>>>> 75fbb1b (Update text ui, adding clickable function)
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2172,4 +2278,7 @@ SceneRoots:
   - {fileID: 1206203845}
   - {fileID: 515627470}
   - {fileID: 1785179119}
+<<<<<<< HEAD
   - {fileID: 296669337}
+=======
+>>>>>>> 75fbb1b (Update text ui, adding clickable function)
