@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject minigame, goalcircle, movingcircle;
 
     public float minigametimeRemaining;
-    private float minigameMaxTime = 1f;
+    private float minigameMaxTime = 1.2f;
     private Dictionary<string, float> playerDamageMults = new Dictionary<string, float>();
     private Dictionary<string, float> enemyDamageMults = new Dictionary<string, float>();
 
