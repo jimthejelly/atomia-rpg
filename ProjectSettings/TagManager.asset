@@ -38,33 +38,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2520566011
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Ground
-    uniqueID: 2520566011
-    locked: 0
-  - name: WalkinFront
-    uniqueID: 1552894733
-    locked: 0
-  - name: Collision
-    uniqueID: 2969729413
-    locked: 0
-  - name: Player
-    uniqueID: 2607780309
-    locked: 0
-  - name: Walkbehind
-    uniqueID: 2624347613
-    locked: 0
-  - name: Decor
-    uniqueID: 1884759307
-    locked: 0
-  - name: BattleBackground
-    uniqueID: 3059110261
-    locked: 0
-  - name: BattleMain
-    uniqueID: 3783461583
-    locked: 0
-  - name: BattleUI
-    uniqueID: 1471590843
+  - name: GameObjects
+    uniqueID: 2883354667
     locked: 0

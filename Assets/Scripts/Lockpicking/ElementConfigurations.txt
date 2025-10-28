@@ -1,0 +1,115 @@
+================================================================================
+ELEMENT BUTTON CONFIGURATIONS FOR YOUR TITRATION MINIGAME
+================================================================================
+
+Copy these settings into the Inspector for each element button:
+
+---
+BORON BUTTON
+---
+Element Symbol:  B
+Element Charge:  +3
+Element Name:    Boron
+
+Notes: Boron typically forms B³⁺ ions (loses 3 electrons)
+Use case: High positive charge for balancing
+
+---
+OXYGEN BUTTON
+---
+Element Symbol:  O
+Element Charge:  -2
+Element Name:    Oxygen
+
+Notes: Oxygen typically forms O²⁻ ions (gains 2 electrons)
+Use case: Water formation (H₂O), oxide compounds
+
+---
+NITROGEN BUTTON
+---
+Element Symbol:  N
+Element Charge:  -3
+Element Name:    Nitrogen
+
+Notes: Nitrogen typically forms N³⁻ ions (nitride)
+Use case: Balances perfectly with Boron (B³⁺ + N³⁻ = 0)
+
+---
+CARBON BUTTON
+---
+Element Symbol:  C
+Element Charge:  +4  (or -4, see notes)
+Element Name:    Carbon
+
+Notes: Carbon can have multiple oxidation states:
+  - Use +4 for carbocations (C⁴⁺)
+  - Use -4 for carbides (C⁴⁻)
+  - For advanced gameplay, create TWO buttons (one for each)
+
+Recommended: Start with +4 for simplicity
+
+---
+HYDROGEN BUTTON
+---
+Element Symbol:  H
+Element Charge:  +1
+Element Name:    Hydrogen
+
+Notes: Hydrogen forms H⁺ ions (protons)
+Use case: Water formation, general balancing
+
+================================================================================
+QUICK BALANCE COMBINATIONS
+================================================================================
+
+Perfect Balances (Total = 0):
+✓ 1 Boron (B³⁺) + 1 Nitrogen (N³⁻) = +3 + (-3) = 0
+✓ 2 Hydrogen (H⁺) + 1 Oxygen (O²⁻) = +2 + (-2) = 0  [H₂O]
+✓ 3 Oxygen (O²⁻) + 2 Boron (B³⁺) = -6 + 6 = 0  [B₂O₃]
+✓ 4 Hydrogen (H⁺) + 1 Carbon (C⁴⁻) = +4 + (-4) = 0  [CH₄]
+✓ 3 Hydrogen (H⁺) + 1 Nitrogen (N³⁻) = +3 + (-3) = 0  [NH₃]
+
+Advanced Combinations:
+✓ 1 Carbon (C⁴⁺) + 2 Oxygen (O²⁻) = +4 + (-4) = 0  [CO₂]
+✓ 2 Nitrogen (N³⁻) + 3 Oxygen (O²⁻) = -6 + (-6) = -12 
+  then add 4 Boron (B³⁺) = +12 to balance → 0
+
+================================================================================
+RECOMMENDED DIFFICULTY SETTINGS
+================================================================================
+
+EASY MODE:
+  Target Charge: 0
+  Time To Win: 2 seconds
+  Charge Deviation: 1 (allows ±1 margin)
+  Available Elements: B, N only (simple 1:1 ratio)
+
+MEDIUM MODE:
+  Target Charge: 0
+  Time To Win: 3 seconds
+  Charge Deviation: 0 (must be exact)
+  Available Elements: B, N, H, O (water + boron-nitrogen)
+
+HARD MODE:
+  Target Charge: 0
+  Time To Win: 5 seconds
+  Charge Deviation: 0
+  Available Elements: All 5 (B, O, N, C, H)
+  
+CHALLENGE MODE:
+  Target Charge: -2 (or other non-zero value)
+  Time To Win: 4 seconds
+  Charge Deviation: 0
+  Available Elements: All 5
+
+================================================================================
+TIPS FOR GAME DESIGN
+================================================================================
+
+1. START SIMPLE: Begin with just B and N to teach the 1:1 concept
+2. ADD COMPLEXITY: Introduce H and O for 2:1 ratios (water)
+3. FINAL CHALLENGE: Use all 5 elements for creative solutions
+4. VISUAL FEEDBACK: The balance beam tilts help players see progress
+5. UNDO FEATURE: Add RemoveLastElement() button so players can fix mistakes
+
+================================================================================
