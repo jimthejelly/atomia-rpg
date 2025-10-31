@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -25,14 +26,37 @@ public class GameManager : MonoBehaviour
     private Dictionary<string, float> playerDamageMults = new Dictionary<string, float>();
     private Dictionary<string, float> enemyDamageMults = new Dictionary<string, float>();
 
-    public List<float> partyHealth = new List<float>();
-    public List<GameObject> enemies = new List<GameObject>();
+    public Dictionary<string, GameObject> party;
+    public Dictionary<string, GameObject> enemies;
+
+    // only for adding characters from the inspector
+    [SerializeField] private List<GameObject> allCharacters;
+    [SerializeField] private List<GameObject> allEnemies;
+
+    // should be used when loading a party
+    private Dictionary<string, GameObject> allCharactersDict;    
+    private Dictionary<string, GameObject> allEnemiesDict;
 
     public int c, o = 0;
 
 
     private void Awake()
     {
+        // converts (serializable) lists into (unserializable but easily searchable) dictionaries
+        foreach (GameObject character in allCharacters)
+        { // adds all characters from allCharacters into a dictionary
+            if (character.GetComponent<PlayerBase>() != null)
+            {
+                allCharactersDict.Add(character.GetComponent<PlayerBase>().charName, character);
+            }
+        }
+        foreach (GameObject enemy in allEnemies)
+        { // adds all enemies from allEnemies into a dictionary
+            if (enemy.GetComponent<EnemyBase>() != null)
+            {
+                allEnemiesDict.Add(enemy.GetComponent<EnemyBase>().enemyName, enemy);
+            }
+        }
         // If there is an instance, and it's not me, delete myself.
         if (Instance != null && Instance != this)
         {
@@ -48,12 +72,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        addElement("c", 2);
-        addElement("o", 2);
-        for(int i = 0; i < partySize; i++)
-        {
-            partyHealth.Add(100);
-        }
+        addElementsFromParty();
     }
 
     public void addElement(string element, int num)
@@ -72,6 +91,18 @@ public class GameManager : MonoBehaviour
         else
         {
             return;
+        }
+    }
+
+    private void addElementsFromParty() // adds elements based on what members are in your party
+    {
+        if (party.ContainsKey("Arpie"))
+        {
+            addElement("c", 2);
+        }
+        if (party.ContainsKey("Oxie"))
+        {
+            addElement("o", 2);
         }
     }
 
@@ -96,13 +127,13 @@ public class GameManager : MonoBehaviour
             movingcircle.transform.localScale *= 0.995f;
         } else if (minigametimeRemaining <= 0f) // end minigame when time is up
         {
-            
+
             minigametimeRemaining = 0f;
             movingcircle.transform.localScale = new Vector3(2f, 2f, 2f);
             minigame.SetActive(false);
             minigamePromptText.gameObject.SetActive(false);
         }
-        
+
         if (minigametimeRemaining > 0f && Input.GetKeyDown(KeyCode.Space)) // check if player won the minigame
         {
             float desiredSize = goalcircle.transform.localScale.x;
@@ -120,6 +151,12 @@ public class GameManager : MonoBehaviour
             }
             minigametimeRemaining = 0f;
         }
+    }
+
+    public GameObject getRandomPartyMember()
+    {
+        List<GameObject> members = Enumerable.ToList(party.Values);
+        return members[UnityEngine.Random.Range(0, members.Count)];
     }
 
     public void swapTurn()
@@ -257,18 +294,5 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         enemyMoving = false;
         swapTurn();
-    }
-    
-    public void changePlayerHealth(int target, float amt)
-    {
-        partyHealth[target] += amt;
-        string newPartyHealthString = "";
-        for (int i = 0; i < partySize - 1; i++)
-        {
-            newPartyHealthString += "Member " + (i + 1) + ": ";
-            newPartyHealthString += partyHealth[i] + ", ";
-        }
-        newPartyHealthString += "Member " + (partySize - 1) + ": " + partyHealth[partySize - 1];
-        partyHealthText.text = newPartyHealthString;
     }
 }

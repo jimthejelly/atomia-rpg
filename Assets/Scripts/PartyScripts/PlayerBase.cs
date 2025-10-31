@@ -5,10 +5,10 @@ using UnityEngine;
 
 public abstract class PlayerBase : MonoBehaviour
 {
-    public float hp = 100f;
-    public float maxHp = 100f;
-    public string element = "";
-    public string name = "";
+    public float hp;
+    public float maxHp;
+    public string element;
+    public string charName;
 
     public void changePlayerHP(float amt)
     {

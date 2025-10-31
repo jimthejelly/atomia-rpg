@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 892657132104699188}
   - component: {fileID: 2766460006143320116}
+  - component: {fileID: 4913785582250239659}
   m_Layer: 0
-  m_Name: PlayerBase
+  m_Name: Arpie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.81939363, g: 1, b: 0.6084906, a: 1}
+  m_Color: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -84,3 +85,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4913785582250239659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6875601569246817833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce93e49f654c0f04687a157ed165f297, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 75
+  maxHp: 75
+  element: c
+  charName: Arpie
