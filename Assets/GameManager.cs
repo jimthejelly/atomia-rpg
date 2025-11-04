@@ -13,12 +13,13 @@ public class GameManager : MonoBehaviour
 
     public bool playerTurn = true;
     public bool enemyMoving = false;
+    public bool choosingTarget = false;
+    public int chosenTarget = 0;
     public int coDebuffTurns = 0;
     private string currentMove = "";
-    public int partySize = 1;
     [SerializeField] private GameObject playerButtons;
 
-    [SerializeField] private GameObject player, enemy, turnIndicator, debuffIcon;
+    [SerializeField] private GameObject turnIndicator, targetIndicator, debuffIcon;
     [SerializeField] private TMP_Text cText, oText, minigamePromptText, partyHealthText;
     [SerializeField] private GameObject minigame, goalcircle, movingcircle;
 
@@ -92,6 +93,88 @@ public class GameManager : MonoBehaviour
         addElementsFromParty();
     }
 
+    void Update()
+    {
+        // ---- debug stuff ----
+        
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            addElement("c", 3);
+            addElement("o", 3);
+        }
+
+        // start enemy turn when player turn ends
+        if (!playerTurn && !enemyMoving)
+        {
+            StartCoroutine(EnemyTurn());
+        }
+
+        // ---- minigame handling ----
+
+        if (minigametimeRemaining > 0f) // reduce the size of the moving circle
+        {
+            float desiredSize = goalcircle.transform.localScale.x;
+            minigametimeRemaining -= Time.deltaTime;
+            movingcircle.transform.localScale *= 0.995f;
+        } else if (minigametimeRemaining <= 0f) // end minigame when time is up
+        {
+
+            minigametimeRemaining = 0f;
+            movingcircle.transform.localScale = new Vector3(2f, 2f, 2f);
+            minigame.SetActive(false);
+            minigamePromptText.gameObject.SetActive(false);
+        }
+
+        if (minigametimeRemaining > 0f && Input.GetKeyDown(KeyCode.Space)) // check if player won the minigame
+        {
+            float desiredSize = goalcircle.transform.localScale.x;
+            float realSize = movingcircle.transform.localScale.x;
+            if (Math.Abs(desiredSize - realSize) < 0.2f * desiredSize)
+            {
+                Debug.Log("Success!");
+                doMinigameEffect(currentMove);
+                // minigametimeRemaining = 0f;
+            }
+            else
+            {
+                Debug.Log("Fail!");
+                // minigametimeRemaining = 0f;
+            }
+            minigametimeRemaining = 0f;
+        }
+
+        // ---- target selection handling ----
+        
+        if (choosingTarget && Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            Debug.Log("switching target left");
+            chosenTarget--;
+            if (chosenTarget < 0)
+            {
+                chosenTarget = enemies.Count - 1;
+            }
+            Vector3 trianglePos = enemies[chosenTarget].transform.position;
+            trianglePos.y += 1.2f;
+            targetIndicator.transform.position = trianglePos;
+        }
+        if (choosingTarget && Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            Debug.Log("switching target right");
+            chosenTarget++;
+            if (chosenTarget >= enemies.Count)
+            {
+                chosenTarget = 0;
+            }
+            Vector3 trianglePos = enemies[chosenTarget].transform.position;
+            trianglePos.y += 1.2f;
+            targetIndicator.transform.position = trianglePos;
+        }
+        // if (choosingTarget && Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     choosingTarget = false;
+        // }
+    }
+
     public void addElement(string element, int num)
     {
         if (element == "c")
@@ -157,53 +240,6 @@ public class GameManager : MonoBehaviour
             }
         }
         SetTurnIndicator();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            addElement("c", 3);
-            addElement("o", 3);
-        }
-
-        if (!playerTurn && !enemyMoving)
-        {
-            StartCoroutine(EnemyTurn());
-        }
-
-        if (minigametimeRemaining > 0f) // reduce the size of the moving circle
-        {
-            float desiredSize = goalcircle.transform.localScale.x;
-            minigametimeRemaining -= Time.deltaTime;
-            movingcircle.transform.localScale *= 0.995f;
-        } else if (minigametimeRemaining <= 0f) // end minigame when time is up
-        {
-
-            minigametimeRemaining = 0f;
-            movingcircle.transform.localScale = new Vector3(2f, 2f, 2f);
-            minigame.SetActive(false);
-            minigamePromptText.gameObject.SetActive(false);
-        }
-
-        if (minigametimeRemaining > 0f && Input.GetKeyDown(KeyCode.Space)) // check if player won the minigame
-        {
-            float desiredSize = goalcircle.transform.localScale.x;
-            float realSize = movingcircle.transform.localScale.x;
-            if (Math.Abs(desiredSize - realSize) < 0.2f * desiredSize)
-            {
-                Debug.Log("Success!");
-                doMinigameEffect(currentMove);
-                // minigametimeRemaining = 0f;
-            }
-            else
-            {
-                Debug.Log("Fail!");
-                // minigametimeRemaining = 0f;
-            }
-            minigametimeRemaining = 0f;
-        }
     }
 
     public GameObject getRandomPartyMember()
@@ -312,21 +348,55 @@ public class GameManager : MonoBehaviour
         return baseDamage;
     }
 
+    private void StartTargeting()
+    {
+        if (choosingTarget)
+        {
+            Debug.Log("targeting already in progress!");
+            return;
+        }
+        choosingTarget = true;
+        targetIndicator.SetActive(true);
+        chosenTarget = 0;
+        Vector3 trianglePos = enemies[chosenTarget].transform.position;
+        trianglePos.y += 1.2f;
+        targetIndicator.transform.position = trianglePos;
+    }
+
     // ------------------------------------------ MOVES ------------------------------------------
 
     public IEnumerator MoveCO2()
     {
+        // check if you can even cast it
         if (c < 1 || o < 2)
         {
             Debug.Log("not enough atoms!");
             yield break;
         }
+
+        // begin targeting sequence
+        Debug.Log("starting targeting sequence");
+        StartTargeting();
+        yield return new WaitUntil(() => choosingTarget = false);
+        Debug.Log("target chosen, moving now");
+
+        // spend elements
         addElement("c", -1);
         addElement("o", -2);
+
+        // start minigame
         currentMove = "co2";
         startMinigame();
         yield return new WaitUntil(() => minigametimeRemaining <= 0);
-        Debug.Log("did " + calculateTotalPlayerDamage(5) + " damage!");
+
+        // do actual move
+        float dmg = calculateTotalPlayerDamage(5);
+        enemies[chosenTarget].GetComponent<EnemyBase>().changeEnemyHealth(-dmg);
+        Debug.Log("did " + dmg + " damage!");
+
+        // clean up
+        chosenTarget = 0;
+        targetIndicator.SetActive(false);
         playerDamageMults.Remove("co2");
         currentMove = "";
     }
