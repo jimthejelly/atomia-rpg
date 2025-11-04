@@ -583,7 +583,7 @@ Transform:
   m_GameObject: {fileID: 663115532}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: -5, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 1.75, z: 0}
   m_LocalScale: {x: 0.6, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2149,6 +2149,7 @@ MonoBehaviour:
   goalcircle: {fileID: 1107738296}
   movingcircle: {fileID: 580742990}
   minigametimeRemaining: 0
+  enemies: []
   allCharacters:
   - {fileID: 6875601569246817833, guid: c2128f4f934f1b34694475ea21a9d202, type: 3}
   - {fileID: 6875601569246817833, guid: 9e6af30da5d13e146a61fd5b529f1d10, type: 3}
