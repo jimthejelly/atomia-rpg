@@ -158436,7 +158436,7 @@ Transform:
   m_GameObject: {fileID: 715278340}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.4695454, y: -0.02185154, z: 0}
+  m_LocalPosition: {x: -9.222351, y: -0.031149864, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -166862,7 +166862,7 @@ Animator:
   m_GameObject: {fileID: 1744407193}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e8cc0e04bd607ba46bc14a1a72aa27ce, type: 2}
+  m_Controller: {fileID: 9100000, guid: 41e5e43aa5707254188ebf5d48170722, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -166921,7 +166921,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.050486565, y: -1.7483201}
+  m_Offset: {x: 0.016824245, y: -3.161841}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -166932,7 +166932,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.493987, y: 1.6584291}
+  m_Size: {x: 5.4363327, y: 2.062295}
   m_EdgeRadius: 0
 --- !u!50 &1744407197
 Rigidbody2D:
@@ -167002,7 +167002,7 @@ SpriteRenderer:
   m_SortingLayerID: -1687186987
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 41da26e80c12acf499058abf627a1848, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3d0bd880ff1d207458860214d39e1e10, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -167022,7 +167022,7 @@ Transform:
   m_GameObject: {fileID: 1744407193}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.5, y: -7.2, z: 0}
+  m_LocalPosition: {x: -10.25, y: -8.04, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -167870,7 +167870,7 @@ Transform:
   m_GameObject: {fileID: 2062151293}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0304546, y: -7.1781483, z: -10}
+  m_LocalPosition: {x: -1.0276489, y: -8.00885, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -167924,8 +167924,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AssetsPPU: 16
-  m_RefResolutionX: 320
-  m_RefResolutionY: 180
+  m_RefResolutionX: 380
+  m_RefResolutionY: 200
   m_UpscaleRT: 0
   m_PixelSnapping: 0
   m_CropFrameX: 0
