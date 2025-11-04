@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,16 +27,31 @@ public class GameManager : MonoBehaviour
     private Dictionary<string, float> playerDamageMults = new Dictionary<string, float>();
     private Dictionary<string, float> enemyDamageMults = new Dictionary<string, float>();
 
-    public Dictionary<string, GameObject> party;
-    public Dictionary<string, GameObject> enemies;
+    public Dictionary<string, GameObject> party = new Dictionary<string, GameObject>(); // dictionary because no duplicates
+    public List<GameObject> enemies = new List<GameObject>(); // allows duplicates, must be a list
 
     // only for adding characters from the inspector
     [SerializeField] private List<GameObject> allCharacters;
     [SerializeField] private List<GameObject> allEnemies;
 
     // should be used when loading a party
-    private Dictionary<string, GameObject> allCharactersDict;    
-    private Dictionary<string, GameObject> allEnemiesDict;
+    private Dictionary<string, GameObject> allCharactersDict = new Dictionary<string, GameObject>();
+    private Dictionary<string, GameObject> allEnemiesDict = new Dictionary<string, GameObject>();
+
+    private Vector3[] partyPositions = // position of the (up to) 4 party members
+    {
+        new Vector3(-3f, -0.5f, 0f),
+        new Vector3(-4f, 0.25f, 0f),
+        new Vector3(-5f, -0.5f, 0f),
+        new Vector3(-6f, 0.25f, 0f)
+    };
+    private Vector3[] enemyPositions = // position of the (up to) 4 enemies
+    {
+        new Vector3(3f, -0.5f, 0f),
+        new Vector3(4f, 0.25f, 0f),
+        new Vector3(5f, -0.5f, 0f),
+        new Vector3(6f, 0.25f, 0f)
+    };
 
     public int c, o = 0;
 
@@ -47,14 +63,14 @@ public class GameManager : MonoBehaviour
         { // adds all characters from allCharacters into a dictionary
             if (character.GetComponent<PlayerBase>() != null)
             {
-                allCharactersDict.Add(character.GetComponent<PlayerBase>().charName, character);
+                allCharactersDict.Add(character.GetComponent<PlayerBase>().GetName(), character);
             }
         }
         foreach (GameObject enemy in allEnemies)
         { // adds all enemies from allEnemies into a dictionary
             if (enemy.GetComponent<EnemyBase>() != null)
             {
-                allEnemiesDict.Add(enemy.GetComponent<EnemyBase>().enemyName, enemy);
+                allEnemiesDict.Add(enemy.GetComponent<EnemyBase>().GetName(), enemy);
             }
         }
         // If there is an instance, and it's not me, delete myself.
@@ -72,6 +88,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        LoadCombat(new string[] { "Arpie", "Oxie" }, new string[] { "Basic Enemy", "Basic Enemy" });
         addElementsFromParty();
     }
 
@@ -104,6 +121,42 @@ public class GameManager : MonoBehaviour
         {
             addElement("o", 2);
         }
+    }
+
+    public void LoadCombat(string[] partyToLoad, string[] enemiesToLoad) 
+    // Syntax: two strings with the exact names of each of the required characters
+    // e.g. {Arpie, Oxie, Henry}, {Basic Enemy, Boss Enemy}
+    {
+        for (int i = 0; i < partyToLoad.Length; i++) // load party members
+        {
+            string member = partyToLoad[i];
+            if (allCharactersDict.ContainsKey(member)) // if they're in the dictionary
+            {
+                if (allCharactersDict.TryGetValue(member, out GameObject value))
+                {
+                    GameObject characterInWorld = Instantiate(value, partyPositions[i], Quaternion.identity); // instantiate them in the world
+                    party.Add(characterInWorld.GetComponent<PlayerBase>().GetName(), characterInWorld); // add them to the party dictionary
+                }
+
+            }
+            else // error catching
+            {
+                Debug.Log("Dictionary does not contain " + member + "!");
+            }
+        }
+        for (int i = 0; i < enemiesToLoad.Length; i++) // load enemies
+        {
+            string member = enemiesToLoad[i];
+            if (allEnemiesDict.ContainsKey(member))
+            {
+                if (allEnemiesDict.TryGetValue(member, out GameObject value))
+                {
+                    GameObject enemyInWorld = Instantiate(value, enemyPositions[i], Quaternion.identity); // instantiate them in the world
+                    enemies.Add(enemyInWorld); // add them to the enemy party list
+                }
+            }
+        }
+        SetTurnIndicator();
     }
 
     // Update is called once per frame
@@ -159,6 +212,23 @@ public class GameManager : MonoBehaviour
         return members[UnityEngine.Random.Range(0, members.Count)];
     }
 
+    private void SetTurnIndicator() // sets the position of the turn indicator upon the switching of turns (individual enemy turn indicator is handled in EnemyTurn)
+    {
+        if (playerTurn)
+        {
+            int lastPartyMember = party.Count - 1;
+            Vector3 trianglePos = Vector3.Lerp(partyPositions[0], partyPositions[lastPartyMember], 0.5f); // get the midpoint between first and last party members
+            trianglePos.y += 2f;
+            turnIndicator.transform.position = trianglePos;
+        } else
+        {
+            // move turn indicator to first enemy
+            Vector3 trianglepos = enemies[0].transform.position;
+            trianglepos.y += 1.25f;
+            turnIndicator.transform.position = trianglepos;
+        }
+    }
+
     public void swapTurn()
     {
         playerTurn = !playerTurn;
@@ -170,16 +240,12 @@ public class GameManager : MonoBehaviour
             enemyMoving = false;
             decrementDebuffs();
 
-            Vector3 trianglepos = player.transform.position;
-            trianglepos.y += 1.5f;
-            turnIndicator.transform.position = trianglepos;
+            SetTurnIndicator();
+
         }
         else // state during enemy turn
         {
-            
-            Vector3 trianglepos = enemy.transform.position;
-            trianglepos.y += 1.5f;
-            turnIndicator.transform.position = trianglepos;
+            SetTurnIndicator();
         }
     }
 
@@ -246,6 +312,8 @@ public class GameManager : MonoBehaviour
         return baseDamage;
     }
 
+    // ------------------------------------------ MOVES ------------------------------------------
+
     public IEnumerator MoveCO2()
     {
         if (c < 1 || o < 2)
@@ -282,6 +350,8 @@ public class GameManager : MonoBehaviour
         currentMove = "";
     }
 
+    // ------------------------------------------ END OF MOVES ------------------------------------------
+
     public IEnumerator EnemyTurn()
     {
         if (playerTurn)
@@ -289,9 +359,15 @@ public class GameManager : MonoBehaviour
             Debug.Log("enemy cant attack during your turn!");
             yield break;
         }
-        Debug.Log("enemy attacks for " + calculateTotalEnemyDamage(7) + " damage!");
         enemyMoving = true;
-        yield return new WaitForSeconds(1.5f);
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            Vector3 trianglePos = enemies[i].transform.position;
+            trianglePos.y += 1.5f;
+            turnIndicator.transform.position = trianglePos;
+            enemies[i].GetComponent<EnemyBase>().DoMove();
+            yield return new WaitForSeconds(1f);
+        }
         enemyMoving = false;
         swapTurn();
     }

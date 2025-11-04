@@ -35,6 +35,11 @@ public abstract class EnemyBase : MonoBehaviour
         }
     }
 
+    public string GetName()
+    {
+        return enemyName;
+    }
+
     private void Die()
     {
         Debug.Log(enemyName + " has died!");

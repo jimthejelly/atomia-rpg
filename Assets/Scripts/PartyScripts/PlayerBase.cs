@@ -23,6 +23,11 @@ public abstract class PlayerBase : MonoBehaviour
         }
     }
 
+    public string GetName()
+    {
+        return charName;
+    }
+
     private void Die()
     {
         Debug.Log(name + " has died!");
