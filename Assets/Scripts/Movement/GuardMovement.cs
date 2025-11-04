@@ -27,6 +27,6 @@ public class GuardMovement : MonoBehaviour
     }
 
     void FixedUpdate() {
-        rb.MovePosition(rb.position + change * speed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position+change*speed*Time.fixedDeltaTime);
     }
 }
