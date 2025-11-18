@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject minigame, goalcircle, movingcircle;
 
     public float minigametimeRemaining;
-    private float minigameMaxTime = 1.2f;
+    private float minigameMaxTime = 1.5f;
     private Dictionary<string, float> playerDamageMults = new Dictionary<string, float>();
     private Dictionary<string, float> enemyDamageMults = new Dictionary<string, float>();
 
@@ -96,7 +96,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // ---- debug stuff ----
-        
         if (Input.GetKeyDown(KeyCode.C))
         {
             addElement("c", 3);
@@ -169,10 +168,11 @@ public class GameManager : MonoBehaviour
             trianglePos.y += 1.2f;
             targetIndicator.transform.position = trianglePos;
         }
-        // if (choosingTarget && Input.GetKeyDown(KeyCode.Space))
-        // {
-        //     choosingTarget = false;
-        // }
+        if (choosingTarget && Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("target chosen");
+            choosingTarget = false;
+        }
     }
 
     public void addElement(string element, int num)
@@ -270,8 +270,7 @@ public class GameManager : MonoBehaviour
         playerTurn = !playerTurn;
         if (playerTurn) // state during player turn
         {
-            addElement("c", 2);
-            addElement("o", 2);
+            addElementsFromParty();
 
             enemyMoving = false;
             decrementDebuffs();
@@ -367,6 +366,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator MoveCO2()
     {
+        Debug.Log("calling moveCO2");
         // check if you can even cast it
         if (c < 1 || o < 2)
         {
@@ -375,14 +375,14 @@ public class GameManager : MonoBehaviour
         }
 
         // begin targeting sequence
-        Debug.Log("starting targeting sequence");
         StartTargeting();
-        yield return new WaitUntil(() => choosingTarget = false);
-        Debug.Log("target chosen, moving now");
+        yield return new WaitUntil(() => choosingTarget == false);
+        Debug.Log("target chosen");
 
         // spend elements
         addElement("c", -1);
         addElement("o", -2);
+        Debug.Log("c: " + c + " o: " + o);
 
         // start minigame
         currentMove = "co2";

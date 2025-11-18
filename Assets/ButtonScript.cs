@@ -21,6 +21,7 @@ public class ButtonScript : MonoBehaviour
         }
         if (move == "co2")
         {
+            Debug.Log("co2 button pressed");
             StartCoroutine(GameManager.Instance.MoveCO2());
             return;
         }
