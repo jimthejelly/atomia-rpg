@@ -20,11 +20,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject playerButtons;
 
     [SerializeField] private GameObject turnIndicator, targetIndicator, debuffIcon;
-    [SerializeField] private TMP_Text cText, oText, minigamePromptText, partyHealthText;
+    [SerializeField] private TMP_Text cText, oText, minigamePromptText, targetTutText;
     [SerializeField] private GameObject minigame, goalcircle, movingcircle;
 
     public float minigametimeRemaining;
     private float minigameMaxTime = 1.5f;
+    private Color circleColorNo = new Color32(255, 97, 81, 75);
+    private Color circleColorYes = new Color32(113, 255, 81, 75);
     private Dictionary<string, float> playerDamageMults = new Dictionary<string, float>();
     private Dictionary<string, float> enemyDamageMults = new Dictionary<string, float>();
 
@@ -114,7 +116,23 @@ public class GameManager : MonoBehaviour
         {
             float desiredSize = goalcircle.transform.localScale.x;
             minigametimeRemaining -= Time.deltaTime;
-            movingcircle.transform.localScale *= 0.995f;
+            movingcircle.transform.localScale *= 0.9975f;
+            float realSize = movingcircle.transform.localScale.x;
+            if (Math.Abs(desiredSize - realSize) < 0.17f * desiredSize) // if the player can press it
+            {
+                Color movingCircleColor = movingcircle.GetComponent<SpriteRenderer>().color;
+                if (movingCircleColor != circleColorYes)
+                {
+                    movingcircle.GetComponent<SpriteRenderer>().color = circleColorYes;
+                }
+            } else // if the player cant press it
+            {
+                Color movingCircleColor = movingcircle.GetComponent<SpriteRenderer>().color;
+                if (movingCircleColor != circleColorNo)
+                {
+                    movingcircle.GetComponent<SpriteRenderer>().color = circleColorNo;
+                }
+            }
         } else if (minigametimeRemaining <= 0f) // end minigame when time is up
         {
 
@@ -128,15 +146,13 @@ public class GameManager : MonoBehaviour
         {
             float desiredSize = goalcircle.transform.localScale.x;
             float realSize = movingcircle.transform.localScale.x;
-            if (Math.Abs(desiredSize - realSize) < 0.2f * desiredSize)
+            if (Math.Abs(desiredSize - realSize) < 0.17f * desiredSize)
             {
-                Debug.Log("Success!");
                 doMinigameEffect(currentMove);
                 // minigametimeRemaining = 0f;
             }
             else
             {
-                Debug.Log("Fail!");
                 // minigametimeRemaining = 0f;
             }
             minigametimeRemaining = 0f;
@@ -146,7 +162,6 @@ public class GameManager : MonoBehaviour
         
         if (choosingTarget && Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            Debug.Log("switching target left");
             chosenTarget--;
             if (chosenTarget < 0)
             {
@@ -158,7 +173,6 @@ public class GameManager : MonoBehaviour
         }
         if (choosingTarget && Input.GetKeyDown(KeyCode.RightArrow))
         {
-            Debug.Log("switching target right");
             chosenTarget++;
             if (chosenTarget >= enemies.Count)
             {
@@ -170,7 +184,7 @@ public class GameManager : MonoBehaviour
         }
         if (choosingTarget && Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("target chosen");
+            targetTutText.gameObject.SetActive(true);
             choosingTarget = false;
         }
     }
@@ -356,6 +370,7 @@ public class GameManager : MonoBehaviour
         }
         choosingTarget = true;
         targetIndicator.SetActive(true);
+        targetTutText.gameObject.SetActive(true);
         chosenTarget = 0;
         Vector3 trianglePos = enemies[chosenTarget].transform.position;
         trianglePos.y += 1.2f;
@@ -366,7 +381,6 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator MoveCO2()
     {
-        Debug.Log("calling moveCO2");
         // check if you can even cast it
         if (c < 1 || o < 2)
         {
@@ -377,12 +391,10 @@ public class GameManager : MonoBehaviour
         // begin targeting sequence
         StartTargeting();
         yield return new WaitUntil(() => choosingTarget == false);
-        Debug.Log("target chosen");
 
         // spend elements
         addElement("c", -1);
         addElement("o", -2);
-        Debug.Log("c: " + c + " o: " + o);
 
         // start minigame
         currentMove = "co2";
@@ -392,7 +404,6 @@ public class GameManager : MonoBehaviour
         // do actual move
         float dmg = calculateTotalPlayerDamage(5);
         enemies[chosenTarget].GetComponent<EnemyBase>().changeEnemyHealth(-dmg);
-        Debug.Log("did " + dmg + " damage!");
 
         // clean up
         chosenTarget = 0;
@@ -426,7 +437,6 @@ public class GameManager : MonoBehaviour
     {
         if (playerTurn)
         {
-            Debug.Log("enemy cant attack during your turn!");
             yield break;
         }
         enemyMoving = true;

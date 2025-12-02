@@ -26,7 +26,9 @@ public abstract class EnemyBase : MonoBehaviour
             return;
         } else
         {
-            target.GetComponent<PlayerBase>().changePlayerHP(5f);
+            float dmg = GameManager.Instance.calculateTotalEnemyDamage(5f);
+            target.GetComponent<PlayerBase>().changePlayerHP(-dmg);
+            Debug.Log("did " + dmg + " damage to " + target.GetComponent<PlayerBase>().GetName());
         }
     }
 
@@ -39,10 +41,10 @@ public abstract class EnemyBase : MonoBehaviour
         }
         Transform hb = healthBar.transform.GetChild(1);
         Vector3 hbScale = hb.localScale;
-        Vector3 hbPos = hb.position;
+        Vector3 hbPos = hb.localPosition;
         hbScale.x = hp / maxHp;
-        hbPos.x -=  (1 - (hp / maxHp))/2;
-        hb.position = hbPos;
+        hbPos.x = -0.5f + (hbScale.x/2);
+        hb.localPosition = hbPos;
         hb.localScale = hbScale;
         if (hp <= 0)
         {
@@ -58,6 +60,8 @@ public abstract class EnemyBase : MonoBehaviour
     private void Die()
     {
         Debug.Log(enemyName + " has died!");
-        Destroy(this);
+        GameManager.Instance.enemies.Remove(this.gameObject);
+        Destroy(healthBar);
+        Destroy(this.gameObject);
     }
 }
