@@ -512,6 +512,7 @@ GameObject:
   m_Component:
   - component: {fileID: 839620462}
   - component: {fileID: 839620463}
+  - component: {fileID: 839620464}
   m_Layer: 0
   m_Name: Carbon
   m_TagString: Untagged
@@ -586,6 +587,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &839620464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839620461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9440c716fc5c0fa45b71b34d22af98c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementSymbol: 
+  elementCharge: 0
+  elementName: 
+  titrationManager: {fileID: 0}
 --- !u!1 &1020429702
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,6 +614,7 @@ GameObject:
   - component: {fileID: 1020429703}
   - component: {fileID: 1020429704}
   - component: {fileID: 1020429705}
+  - component: {fileID: 1020429706}
   m_Layer: 0
   m_Name: Boron
   m_TagString: Untagged
@@ -715,6 +733,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1020429706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020429702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9440c716fc5c0fa45b71b34d22af98c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementSymbol: 
+  elementCharge: 0
+  elementName: 
+  titrationManager: {fileID: 0}
 --- !u!1 &1206203844
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,6 +793,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1427768214}
   - component: {fileID: 1427768215}
+  - component: {fileID: 1427768216}
   m_Layer: 0
   m_Name: Nitrogen
   m_TagString: Untagged
@@ -833,6 +868,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1427768216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427768213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9440c716fc5c0fa45b71b34d22af98c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementSymbol: 
+  elementCharge: 0
+  elementName: 
+  titrationManager: {fileID: 0}
 --- !u!1 &1577653995
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,6 +894,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1577653996}
   - component: {fileID: 1577653997}
+  - component: {fileID: 1577653998}
   m_Layer: 0
   m_Name: Hydrogen
   m_TagString: Untagged
@@ -917,6 +969,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1577653998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577653995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9440c716fc5c0fa45b71b34d22af98c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementSymbol: 
+  elementCharge: 0
+  elementName: 
+  titrationManager: {fileID: 0}
 --- !u!1 &1630962620
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,6 +1113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1846287226}
   - component: {fileID: 1846287227}
+  - component: {fileID: 1846287228}
   m_Layer: 0
   m_Name: Oxygen
   m_TagString: Untagged
@@ -1119,6 +1188,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1846287228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846287225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9440c716fc5c0fa45b71b34d22af98c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementSymbol: 
+  elementCharge: 0
+  elementName: 
+  titrationManager: {fileID: 0}
 --- !u!1 &1892659083
 GameObject:
   m_ObjectHideFlags: 0
