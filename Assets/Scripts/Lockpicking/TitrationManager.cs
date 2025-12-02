@@ -56,6 +56,7 @@ public class TitrationManager : MonoBehaviour
     private float balanceTimer = 0f;
     private bool isBalanced = false;
     private bool gameEnded = false;
+    private bool hasAddedElements = false;
 
     void Start()
     {
@@ -75,8 +76,8 @@ public class TitrationManager : MonoBehaviour
     {
         if (gameEnded) return;
 
-        // Check if currently balanced
-        isBalanced = Mathf.Abs(currentCharge - targetCharge) <= chargeDeviation;
+        // Check if currently balanced (only if elements have been added)
+        isBalanced = hasAddedElements && Mathf.Abs(currentCharge - targetCharge) <= chargeDeviation;
 
         if (isBalanced)
         {
@@ -117,6 +118,7 @@ public class TitrationManager : MonoBehaviour
     {
         if (gameEnded) return;
 
+        hasAddedElements = true;
         Element newElement = new Element(symbol, charge, name);
         elementsInBeaker.Add(newElement);
         currentCharge += charge;
@@ -217,6 +219,7 @@ public class TitrationManager : MonoBehaviour
     public void ResetGame()
     {
         gameEnded = false;
+        hasAddedElements = false;
         ClearBeaker();
         balanceTimer = 0f;
         

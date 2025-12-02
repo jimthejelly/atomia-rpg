@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 /// <summary>
 /// Attach this to each element icon button in your titration minigame.
 /// When clicked, it adds the element to the beaker via TitrationManager.
+/// Works with both UI Buttons and Sprite-based world objects.
 /// </summary>
 public class ElementButton : MonoBehaviour
 {
@@ -23,20 +23,9 @@ public class ElementButton : MonoBehaviour
     [Tooltip("The TitrationManager controlling this minigame")]
     public TitrationManager titrationManager;
 
-    private Button button;
-
     void Start()
     {
-        // Get the Button component
-        button = GetComponent<Button>();
-        if (button == null)
-        {
-            Debug.LogError("ElementButton requires a Button component!");
-            return;
-        }
-
-        // Add click listener
-        button.onClick.AddListener(OnElementClicked);
+        Debug.Log($"ElementButton Start() called on {gameObject.name}");
 
         // Find TitrationManager if not assigned
         if (titrationManager == null)
@@ -44,9 +33,22 @@ public class ElementButton : MonoBehaviour
             titrationManager = FindObjectOfType<TitrationManager>();
             if (titrationManager == null)
             {
-                Debug.LogError("ElementButton couldn't find TitrationManager in scene!");
+                Debug.LogError($"ElementButton on {gameObject.name} couldn't find TitrationManager in scene!");
+            }
+            else
+            {
+                Debug.Log($"TitrationManager found for {gameObject.name}");
             }
         }
+        
+        Debug.Log($"ElementButton ready: {gameObject.name} - Symbol: {elementSymbol}, Charge: {elementCharge}");
+    }
+    
+    // For world-space sprites (SpriteRenderer) - detects mouse clicks
+    void OnMouseDown()
+    {
+        Debug.Log($"Mouse clicked on {gameObject.name}!");
+        OnElementClicked();
     }
 
     /// <summary>
@@ -54,6 +56,8 @@ public class ElementButton : MonoBehaviour
     /// </summary>
     void OnElementClicked()
     {
+        Debug.Log($"OnElementClicked fired for {gameObject.name}!");
+        
         if (titrationManager != null)
         {
             titrationManager.AddElement(elementSymbol, elementCharge, elementName);
@@ -62,15 +66,6 @@ public class ElementButton : MonoBehaviour
         else
         {
             Debug.LogError("TitrationManager reference is missing!");
-        }
-    }
-
-    void OnDestroy()
-    {
-        // Clean up listener when destroyed
-        if (button != null)
-        {
-            button.onClick.RemoveListener(OnElementClicked);
         }
     }
 }
