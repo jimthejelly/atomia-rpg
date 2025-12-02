@@ -60,7 +60,7 @@ public abstract class EnemyBase : MonoBehaviour
     private void Die()
     {
         Debug.Log(enemyName + " has died!");
-        GameManager.Instance.enemies.Remove(this.gameObject);
+        GameManager.Instance.removeEnemy(gameObject);
         Destroy(healthBar);
         Destroy(this.gameObject);
     }

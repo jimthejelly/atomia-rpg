@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.TextCore.Text;
 
 public class GameManager : MonoBehaviour
@@ -361,6 +362,14 @@ public class GameManager : MonoBehaviour
         return baseDamage;
     }
 
+    public void removeEnemy(GameObject enemy)
+    {
+        enemies.Remove(enemy);
+        if (enemies.Count == 0)
+        {
+            SceneManager.LoadScene("WinScreen");
+        }
+    }
     private void StartTargeting()
     {
         if (choosingTarget)
