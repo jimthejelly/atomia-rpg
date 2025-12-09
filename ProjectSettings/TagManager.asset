@@ -12,8 +12,8 @@ TagManager:
   - 
   - Water
   - UI
-  - Player
-  - Bullets
+  - Background
+  - GameObjects
   - BattleBox
   - 
   - 
@@ -47,4 +47,4 @@ TagManager:
     locked: 0
   - name: GameObjects
     uniqueID: 2883354667
-    locked: 0
+    locked: 1
