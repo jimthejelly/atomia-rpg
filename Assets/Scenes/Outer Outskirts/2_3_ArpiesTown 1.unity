@@ -166888,6 +166888,7 @@ MonoBehaviour:
   dialogueUI: {fileID: 140728483}
   animator: {fileID: 1744407194}
   speed: 5
+  oldLastDir: 0
   rb: {fileID: 1744407197}
 --- !u!61 &1744407196
 BoxCollider2D:
@@ -167893,7 +167894,7 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
+  m_UpdateMethod: 0
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
