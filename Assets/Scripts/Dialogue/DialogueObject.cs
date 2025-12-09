@@ -1,7 +1,5 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Dialogue/DialogueObject")]
-
 [System.Serializable]
 public class DialogueLine
 {
@@ -9,6 +7,7 @@ public class DialogueLine
     [TextArea] public string text;
 }
 
+[CreateAssetMenu(menuName = "Dialogue/DialogueObject")]
 public class DialogueObject : ScriptableObject
 {
     [SerializeField] private DialogueLine[] dialogueLines;
