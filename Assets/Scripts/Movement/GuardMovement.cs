@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class GuardMovement : MonoBehaviour
+{
+    public Animator animator;
+    public float speed;
+
+    public Rigidbody2D rb;
+    private Vector2 change;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    void Update()
+    {
+        change = Vector2.zero;
+        change.x = Input.GetAxisRaw("Horizontal");
+        change.y = Input.GetAxisRaw("Vertical");
+        
+        animator.SetFloat("Horizontal", change.x);
+        animator.SetFloat("Vertical", change.y);
+        animator.SetFloat("Speed", change.sqrMagnitude);
+    }
+
+    void FixedUpdate() {
+        rb.MovePosition(rb.position+change*speed*Time.fixedDeltaTime);
+    }
+}
