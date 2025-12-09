@@ -337,9 +337,9 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1552894733
-  m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingLayerID: -1774401285
+  m_SortingLayer: -1
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -2907,9 +2907,9 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1884759307
-  m_SortingLayer: 6
-  m_SortingOrder: 0
+  m_SortingLayerID: -1774401285
+  m_SortingLayer: -1
+  m_SortingOrder: 4
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -3052,7 +3052,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1774401285
-  m_SortingLayer: 1
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -21445,7 +21445,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1325237883
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 536e19c309fb8cd4fbf049165666c996, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -21870,7 +21870,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.999713, y: 0.14884591, z: -10}
+  m_LocalPosition: {x: -0.08003223, y: 0.16550326, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -22068,9 +22068,9 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1325237883
-  m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingLayerID: -1774401285
+  m_SortingLayer: -1
+  m_SortingOrder: 2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -25910,7 +25910,7 @@ GameObject:
   - component: {fileID: 1027454978}
   - component: {fileID: 1027454977}
   - component: {fileID: 1027454976}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: arpie
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -25956,7 +25956,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1687186987
-  m_SortingLayer: 4
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ed8a1ccbe0c2bfb4190434b410db559d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -25978,7 +25978,7 @@ Transform:
   m_GameObject: {fileID: 1027454973}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.63, y: 2.97, z: 0}
+  m_LocalPosition: {x: -0.94, y: 2.89, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -26418,7 +26418,7 @@ Transform:
   m_GameObject: {fileID: 1497755216}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.63, y: 2.97, z: -10}
+  m_LocalPosition: {x: -0.94, y: 2.89, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -26806,9 +26806,9 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1670619683
-  m_SortingLayer: 5
-  m_SortingOrder: 0
+  m_SortingLayerID: -1774401285
+  m_SortingLayer: -1
+  m_SortingOrder: 3
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
