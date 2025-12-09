@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-/// <summary>
-/// Represents a chemical formula that the player needs to balance.
-/// Works with TitrationManager to check if the player's element combination matches.
-/// </summary>
+
 [System.Serializable]
 public class FormulaData
 {
@@ -25,9 +22,7 @@ public class FormulaData
         public int charge;        // e.g., +1 for H⁺
     }
     
-    /// <summary>
-    /// Check if the player's beaker matches this formula
-    /// </summary>
+
     public bool CheckMatch(List<TitrationManager.Element> playerElements)
     {
         Dictionary<string, int> playerCounts = new Dictionary<string, int>();
@@ -54,9 +49,6 @@ public class FormulaData
         return true;
     }
     
-    // <summary>
-    // Get the total charge this formula should have
-    // </summary>
     public int GetTargetCharge()
     {
         int total = 0;
@@ -142,7 +134,7 @@ public class Formula : MonoBehaviour
         // Update UI
         if (formulaDisplayText != null)
         {
-            formulaDisplayText.text = currentFormula.formulaText;
+            formulaDisplayText.text = currentFormula.formulaName;
         }
         
         if (descriptionText != null)
@@ -193,7 +185,7 @@ public class Formula : MonoBehaviour
  
     void CreateDefaultFormulas()
     {
-        // Water (H₂O)
+        // Water (H2O)
         FormulaData water = new FormulaData();
         water.formulaName = "Water";
         water.formulaText = "H₂O";
@@ -202,7 +194,7 @@ public class Formula : MonoBehaviour
         water.requiredElements.Add(new FormulaData.ElementRequirement { symbol = "O", quantity = 1, charge = -2 });
         availableFormulas.Add(water);
         
-        // Ammonia (NH₃)
+        // Ammonia (NH3)
         FormulaData ammonia = new FormulaData();
         ammonia.formulaName = "Ammonia";
         ammonia.formulaText = "NH₃";
@@ -211,7 +203,7 @@ public class Formula : MonoBehaviour
         ammonia.requiredElements.Add(new FormulaData.ElementRequirement { symbol = "H", quantity = 3, charge = 1 });
         availableFormulas.Add(ammonia);
         
-        // Methane (CH₄)
+        // Methane (CH4)
         FormulaData methane = new FormulaData();
         methane.formulaName = "Methane";
         methane.formulaText = "CH₄";
@@ -229,7 +221,7 @@ public class Formula : MonoBehaviour
         boronNitride.requiredElements.Add(new FormulaData.ElementRequirement { symbol = "N", quantity = 1, charge = -3 });
         availableFormulas.Add(boronNitride);
         
-        // Boron Trioxide (B₂O₃)
+        // Boron Trioxide (B2O3)
         FormulaData boronTrioxide = new FormulaData();
         boronTrioxide.formulaName = "Boron Trioxide";
         boronTrioxide.formulaText = "B₂O₃";

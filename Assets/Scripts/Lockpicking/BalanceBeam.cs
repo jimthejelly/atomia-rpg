@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Visual representation of the titration balance.
-/// Rotates or moves based on charge balance (0-180 scale).
-/// Position 90 = perfectly balanced.
-/// </summary>
+// Visual representation of the titration balance.
+// Rotates or moves based on charge balance (0-180 scale).
+// Position 90 = perfectly balanced.
+
 public class BalanceBeam : MonoBehaviour
 {
     [Header("Balance Settings")]
@@ -80,12 +79,8 @@ public class BalanceBeam : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Update the balance beam based on current charge
-    /// </summary>
-    /// <param name="currentCharge">Current total charge in beaker</param>
-    /// <param name="targetCharge">Target charge for balance (usually 0)</param>
-    public void UpdateBalance(int currentCharge, int targetCharge)
+    // Update the balance beam based on current charge
+     public void UpdateBalance(int currentCharge, int targetCharge)
     {
         // Calculate deviation from target
         int chargeDeviation = currentCharge - targetCharge;
@@ -98,10 +93,9 @@ public class BalanceBeam : MonoBehaviour
         targetPosition = centerPosition + Mathf.RoundToInt(normalizedCharge * (maxPosition - centerPosition));
         targetPosition = Mathf.Clamp(targetPosition, minPosition, maxPosition);
     }
+    
+    // Get whether the beam is currently balanced
 
-    /// <summary>
-    /// Get whether the beam is currently balanced
-    /// </summary>
     public bool IsBalanced(int tolerance = 5)
     {
         return Mathf.Abs(currentPosition - centerPosition) <= tolerance;

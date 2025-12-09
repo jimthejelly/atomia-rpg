@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Attach this to each element icon button in your titration minigame.
-/// When clicked, it adds the element to the beaker via TitrationManager.
-/// Works with both UI Buttons and Sprite-based world objects.
-/// </summary>
+
+// This serves to be attached to the element icon buttons in the minigame
 public class ElementButton : MonoBehaviour
 {
     [Header("Element Properties")]
@@ -51,9 +48,6 @@ public class ElementButton : MonoBehaviour
         OnElementClicked();
     }
 
-    /// <summary>
-    /// Called when the element button is clicked
-    /// </summary>
     void OnElementClicked()
     {
         Debug.Log($"OnElementClicked fired for {gameObject.name}!");

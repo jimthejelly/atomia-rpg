@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
-/// <summary>
-/// Manages the titration minigame state. Tracks elements added to beaker,
-/// calculates charge balance, and determines win/loss conditions.
-/// </summary>
+// Manages the titration minigame state. Tracks elements added to beaker,
+// calculates charge balance, and determines win/loss conditions.
+
+
 /* NEXT STEPS:
  - add timer to count damage
  - finish timer when win or loss */
@@ -46,6 +47,10 @@ public class TitrationManager : MonoBehaviour
     public GameObject winPanel;
     public GameObject losePanel;
 
+    public TextMeshProUGUI timerDisplay;
+    public TextMeshProUGUI gameTimer;
+    public GameObject winner;
+
     [Header("Visual References")]
     public BalanceBeam balanceBeam;
     public Formula currentFormula;
@@ -62,7 +67,6 @@ public class TitrationManager : MonoBehaviour
     private bool isBalanced = false;
     private bool gameEnded = false;
     private bool hasAddedElements = false;
-    private float gameTimer = 0f;
     private bool TimeRun = false;
 
     void Start()
@@ -77,11 +81,17 @@ public class TitrationManager : MonoBehaviour
         
         if (winPanel != null) winPanel.SetActive(false);
         if (losePanel != null) losePanel.SetActive(false);
+
+        TimeRun = true;
     }
 
     void Update()
     {
         if (gameEnded) return;
+
+        if (TimeRun)
+        {
+            timerDisplay.text = Time.deltaTime.ToString("F2");
 
         // Check if currently balanced (only if elements have been added)
         isBalanced = hasAddedElements && Mathf.Abs(currentCharge - targetCharge) <= chargeDeviation;
@@ -128,11 +138,8 @@ public class TitrationManager : MonoBehaviour
         {
             balanceBeam.UpdateBalance(currentCharge, targetCharge);
         }
+        }
     }
-
-    /// <summary>
-    /// Add an element to the beaker
-    /// </summary>
     public void AddElement(string symbol, int charge, string name = "")
     {
         if (gameEnded) return;
@@ -148,9 +155,7 @@ public class TitrationManager : MonoBehaviour
         Debug.Log($"Added {symbol} (charge: {charge}). Total charge: {currentCharge}");
     }
 
-    /// <summary>
-    /// Remove the last added element (undo functionality)
-    /// </summary>
+
     public void RemoveLastElement()
     {
         if (gameEnded || elementsInBeaker.Count == 0) return;
@@ -165,9 +170,7 @@ public class TitrationManager : MonoBehaviour
         Debug.Log($"Removed {lastElement.symbol}. Total charge: {currentCharge}");
     }
 
-    /// <summary>
-    /// Clear all elements from beaker (reset)
-    /// </summary>
+ 
     public void ClearBeaker()
     {
         if (gameEnded) return;
@@ -182,9 +185,6 @@ public class TitrationManager : MonoBehaviour
         Debug.Log("Beaker cleared");
     }
 
-    /// <summary>
-    /// Update all UI elements
-    /// </summary>
     void UpdateUI()
     {
         // Update charge display
@@ -220,6 +220,7 @@ public class TitrationManager : MonoBehaviour
     void WinGame()
     {
         gameEnded = true;
+        TimeRun = false;
         Debug.Log("Titration balanced! You win!");
         
         if (winPanel != null) winPanel.SetActive(true);
@@ -229,6 +230,7 @@ public class TitrationManager : MonoBehaviour
     public void LoseGame()
     {
         gameEnded = true;
+        TimeRun = false;
         Debug.Log("Titration failed!");
         
         if (losePanel != null) losePanel.SetActive(true);
