@@ -8,6 +8,10 @@ using UnityEngine.Events;
 /// Manages the titration minigame state. Tracks elements added to beaker,
 /// calculates charge balance, and determines win/loss conditions.
 /// </summary>
+/* NEXT STEPS:
+ - add timer to count damage
+ - finish timer when win or loss */
+
 public class TitrationManager : MonoBehaviour
 {
     [System.Serializable]
@@ -44,6 +48,7 @@ public class TitrationManager : MonoBehaviour
 
     [Header("Visual References")]
     public BalanceBeam balanceBeam;
+    public Formula currentFormula;
 
     [Header("Events")]
     public UnityEvent onWin;
@@ -57,6 +62,8 @@ public class TitrationManager : MonoBehaviour
     private bool isBalanced = false;
     private bool gameEnded = false;
     private bool hasAddedElements = false;
+    private float gameTimer = 0f;
+    private bool TimeRun = false;
 
     void Start()
     {
@@ -91,7 +98,19 @@ public class TitrationManager : MonoBehaviour
             // Win condition
             if (balanceTimer >= timeToWin)
             {
-                WinGame();
+                bool formulaMatches = true;
+                if (currentFormula != null && currentFormula.currentFormula != null)
+                {
+                    formulaMatches = currentFormula.currentFormula.CheckMatch(elementsInBeaker);
+                }
+
+                if (formulaMatches)
+                {
+                    WinGame();
+                }
+                else{
+                    LoseGame();
+                }
             }
         }
         else
