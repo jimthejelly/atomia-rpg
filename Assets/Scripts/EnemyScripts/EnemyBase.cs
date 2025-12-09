@@ -26,9 +26,8 @@ public abstract class EnemyBase : MonoBehaviour
             return;
         } else
         {
-            float dmg = GameManager.Instance.calculateTotalEnemyDamage(5f);
+            float dmg = GameManager.Instance.calculateTotalEnemyDamage(25f);
             target.GetComponent<PlayerBase>().changePlayerHP(-dmg);
-            Debug.Log("did " + dmg + " damage to " + target.GetComponent<PlayerBase>().GetName());
         }
     }
 

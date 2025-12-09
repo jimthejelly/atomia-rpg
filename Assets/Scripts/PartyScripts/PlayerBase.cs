@@ -22,7 +22,6 @@ public abstract class PlayerBase : MonoBehaviour
         {
             hp = maxHp;
         }
-        Debug.Log(charName + " new hp = " + hp);
         Transform hb = healthBar.transform.GetChild(1);
         Vector3 hbScale = hb.localScale;
         Vector3 hbPos = hb.localPosition;
@@ -44,5 +43,6 @@ public abstract class PlayerBase : MonoBehaviour
     private void Die()
     {
         Debug.Log(name + " has died!");
+        GameManager.Instance.removePlayer(gameObject);
     }
 }

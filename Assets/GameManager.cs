@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TextCore.Text;
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject playerButtons;
 
     [SerializeField] private GameObject turnIndicator, targetIndicator, debuffIcon;
-    [SerializeField] private TMP_Text cText, oText, minigamePromptText, targetTutText;
+    [SerializeField] private TMP_Text cText, oText, minigamePromptText, targetTutText, errorText;
     [SerializeField] private GameObject minigame, goalcircle, movingcircle;
 
     public float minigametimeRemaining;
@@ -33,6 +34,8 @@ public class GameManager : MonoBehaviour
 
     public Dictionary<string, GameObject> party = new Dictionary<string, GameObject>(); // dictionary because no duplicates
     public List<GameObject> enemies = new List<GameObject>(); // allows duplicates, must be a list
+
+    public List<string> moves = new List<string>(); // list of moves
 
     // only for adding characters from the inspector
     [SerializeField] private List<GameObject> allCharacters;
@@ -94,6 +97,8 @@ public class GameManager : MonoBehaviour
     {
         LoadCombat(new string[] { "Arpie", "Oxie" }, new string[] { "Basic Enemy", "Basic Enemy" });
         addElementsFromParty();
+        addMovesFromParty();
+
     }
 
     void Update()
@@ -185,7 +190,7 @@ public class GameManager : MonoBehaviour
         }
         if (choosingTarget && Input.GetKeyDown(KeyCode.Space))
         {
-            targetTutText.gameObject.SetActive(true);
+            targetTutText.gameObject.SetActive(false);
             choosingTarget = false;
         }
     }
@@ -218,6 +223,15 @@ public class GameManager : MonoBehaviour
         if (party.ContainsKey("Oxie"))
         {
             addElement("o", 2);
+        }
+    }
+
+    private void addMovesFromParty()
+    {
+        if (party.ContainsKey("Arpie") && party.ContainsKey("Oxie"))
+        {
+            moves.Add("co2");
+            moves.Add("co");
         }
     }
 
@@ -370,6 +384,16 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("WinScreen");
         }
     }
+    
+    public void removePlayer(GameObject player)
+    {
+        party.Remove(player.GetComponent<PlayerBase>().GetName());
+        if (party.Count == 0)
+        {
+            SceneManager.LoadScene("LoseScreen");
+        }
+    }
+    
     private void StartTargeting()
     {
         if (choosingTarget)
@@ -386,6 +410,14 @@ public class GameManager : MonoBehaviour
         targetIndicator.transform.position = trianglePos;
     }
 
+    public IEnumerator DisplayErrorText(float dur, string msg)
+    {
+        errorText.text = msg;
+        errorText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(dur);
+        errorText.gameObject.SetActive(false);
+    }
+
     // ------------------------------------------ MOVES ------------------------------------------
 
     public IEnumerator MoveCO2()
@@ -393,7 +425,7 @@ public class GameManager : MonoBehaviour
         // check if you can even cast it
         if (c < 1 || o < 2)
         {
-            Debug.Log("not enough atoms!");
+            StartCoroutine(DisplayErrorText(1f, "Not enough atoms!"));
             yield break;
         }
 
@@ -425,7 +457,7 @@ public class GameManager : MonoBehaviour
     {
         if (c < 2 || o < 2)
         {
-            Debug.Log("not enough atoms!");
+            StartCoroutine(DisplayErrorText(1f, "Not enough atoms!"));
             yield break;
         }
         addElement("c", -2);
@@ -434,8 +466,7 @@ public class GameManager : MonoBehaviour
         startMinigame();
         yield return new WaitUntil(() => minigametimeRemaining <= 0);
         coDebuffTurns += 2;
-        Debug.Log("debuffed enemies for " + coDebuffTurns + " turns!");
-        enemyDamageMults.Add("co", 0.85f);
+        enemyDamageMults.Add("co", 0.60f);
         debuffIcon.SetActive(true);
         currentMove = "";
     }

@@ -14,4 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/KaiBattleTestZone.unity
     guid: 450a7ebe9d4f6d142b87c8a3f477aaf9
+  - enabled: 1
+    path: Assets/Scenes/ChemTest.unity
+    guid: 3634aeb40b4cae443b8cd80347488495
+  - enabled: 1
+    path: Assets/Scenes/WinScreen.unity
+    guid: 7aa68f3b77c9dca44b5f2aa197153911
+  - enabled: 1
+    path: Assets/Scenes/LoseScreen.unity
+    guid: 1f2a961c4fc0f3046aeb52f037193bd6
   m_configObjects: {}
