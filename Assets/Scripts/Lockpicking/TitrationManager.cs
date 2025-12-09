@@ -56,10 +56,7 @@ public class TitrationManager : MonoBehaviour
     private float balanceTimer = 0f;
     private bool isBalanced = false;
     private bool gameEnded = false;
-<<<<<<< HEAD
     private bool hasAddedElements = false;
-=======
->>>>>>> 75fbb1b (Update text ui, adding clickable function)
 
     void Start()
     {
@@ -72,20 +69,15 @@ public class TitrationManager : MonoBehaviour
         UpdateUI();
         
         if (winPanel != null) winPanel.SetActive(false);
-        if (losePanel != null) losePanel.SetActive(false);
+        if (losePanel != null) winPanel.SetActive(false);
     }
 
     void Update()
     {
         if (gameEnded) return;
 
-<<<<<<< HEAD
         // Check if currently balanced (only if elements have been added)
         isBalanced = hasAddedElements && Mathf.Abs(currentCharge - targetCharge) <= chargeDeviation;
-=======
-        // Check if currently balanced
-        isBalanced = Mathf.Abs(currentCharge - targetCharge) <= chargeDeviation;
->>>>>>> 75fbb1b (Update text ui, adding clickable function)
 
         if (isBalanced)
         {
@@ -126,10 +118,7 @@ public class TitrationManager : MonoBehaviour
     {
         if (gameEnded) return;
 
-<<<<<<< HEAD
         hasAddedElements = true;
-=======
->>>>>>> 75fbb1b (Update text ui, adding clickable function)
         Element newElement = new Element(symbol, charge, name);
         elementsInBeaker.Add(newElement);
         currentCharge += charge;
@@ -230,10 +219,7 @@ public class TitrationManager : MonoBehaviour
     public void ResetGame()
     {
         gameEnded = false;
-<<<<<<< HEAD
         hasAddedElements = false;
-=======
->>>>>>> 75fbb1b (Update text ui, adding clickable function)
         ClearBeaker();
         balanceTimer = 0f;
         
