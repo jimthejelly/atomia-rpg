@@ -28,6 +28,7 @@ public class Weighting : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            InitializeElements();
         }
         else
         {
@@ -37,7 +38,6 @@ public class Weighting : MonoBehaviour
 
     private void Start()
     {
-        InitializeElements();
     }
 
     private void InitializeElements()
