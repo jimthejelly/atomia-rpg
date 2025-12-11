@@ -10,37 +10,52 @@ public class ElementButtonRedux : MonoBehaviour
 
     private TitrationManagerRedux titrationManager;
     private Text displayText;
-    private Button button;
     private Weighting.Element elementData;
 
-    // Start is called before the first frame update
     void Start()
     {
-        titrationManager = FindObjectOfType<TitrationManagerRedux>();
-        displayText = GetComponentInChildren<Text>();
-        button = GetComponent<Button>();
-        elementData = Weighting.instance.GetElement(elementSymbol);
+        Debug.Log($"ElementButtonRedux starting on {gameObject.name}");
 
-        button.onClick.AddListener(OnButtonClicked);
+        titrationManager = FindObjectOfType<TitrationManagerRedux>();
+        Debug.Log($"Found TitrationManagerRedux: {titrationManager != null}");
+        displayText = GetComponentInChildren<Text>();
+        
+        if (string.IsNullOrEmpty(elementSymbol))
+        {
+            Debug.LogError($"ElementButtonRedux on {gameObject.name}: elementSymbol is not set!");
+            return;
+        }
+        
+        elementData = Weighting.instance.GetElement(elementSymbol);
+        
+        if (elementData == null)
+        {
+            Debug.LogError($"ElementButtonRedux: Could not find element '{elementSymbol}'");
+            return;
+        }
+        
         UpdateDisplay();
     }
 
-
-    /* This function will add the element to the left beeker when clicked */
-    private void OnButtonClicked()
+    private void OnMouseDown()
     {
-        titrationManager.AddElementLeft(elementSymbol);
+        Debug.Log($"Button clicked! Element: {elementSymbol}");
+
+        if (titrationManager != null)
+        {
+            titrationManager.AddElementLeft(elementSymbol);
+        }
+        else
+        {
+            Debug.LogError("TitrationManagerRedux not found in scene");
+        }
     }
 
-    /* will display the element's data when it is clicked */
     private void UpdateDisplay()
     {
-        displayText.text = elementData.symbol;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (displayText != null && elementData != null)
+        {
+            displayText.text = elementData.symbol;
+        }
     }
 }
