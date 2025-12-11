@@ -976,7 +976,7 @@ Transform:
   m_GameObject: {fileID: 992748735}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.0234, y: -5.0161, z: 51}
+  m_LocalPosition: {x: -20.0234, y: -5.0161, z: 50}
   m_LocalScale: {x: 18.07314, y: 2.086278, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1329,6 +1329,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1829478814}
+  - component: {fileID: 1829478815}
   m_Layer: 0
   m_Name: TiltingParts
   m_TagString: Untagged
@@ -1354,6 +1355,18 @@ Transform:
   - {fileID: 2050395007}
   m_Father: {fileID: 645982848}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1829478815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829478813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe2f66e5cec665242ae805e1f5eb79cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2050395006
 GameObject:
   m_ObjectHideFlags: 0
