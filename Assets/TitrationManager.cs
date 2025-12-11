@@ -4,7 +4,7 @@ using System.Collections.Generic;
 /// <summary>
 /// Manages the titration minigame - tracks added elements and updates the balance beam
 /// </summary>
-public class TitrationManager : MonoBehaviour
+public class TitrationManagerOld : MonoBehaviour
 {
     [Header("References")]
     public BalanceBeam balanceBeam;

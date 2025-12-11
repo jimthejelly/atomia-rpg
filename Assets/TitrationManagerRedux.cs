@@ -17,6 +17,13 @@ public class TitrationManagerRedux : MonoBehaviour
         {
             balanceBeam = GetComponent<BalanceBeamTilt>();
         }
+
+        // disable  old TitrationManager
+        TitrationManager oldManager = GetComponent<TitrationManager>();
+        if (oldManager != null)
+        {
+            oldManager.enabled = false;
+        }
     }
 
     public void AddElementLeft(string elementSymbol)
@@ -45,5 +52,40 @@ public class TitrationManagerRedux : MonoBehaviour
     {
         int totalChargeDifference = leftSideCharge - rightSideCharge;
         balanceBeam.UpdateBalance(totalChargeDifference, targetCharge);
+    }
+
+    // checks for balancing on the balance beam
+    public bool IsBalanced(int tolerance = 5)
+    {
+        return balanceBeam.IsBalanced(tolerance);
+    }
+
+    public int GetChargeDifference()
+    {
+        return leftSideCharge - rightSideCharge;
+    }
+
+    public void PrintChargeInfo()
+    {
+        int diff = leftSideCharge - rightSideCharge;
+        Debug.Log($"Left: {leftSideCharge} | Right: {rightSideCharge} | Difference: {diff}");
+    }
+
+    public void Reset()
+    {
+        leftSideCharge = 0;
+        rightSideCharge = 0;
+        UpdateBeam();
+        Debug.Log("titration reset");
+    }
+
+    public int GetLeftCharge()
+    {
+        return leftSideCharge;
+    }
+
+    public int GetRightCharge()
+    {
+        return rightSideCharge;
     }
 }
