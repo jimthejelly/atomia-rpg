@@ -37,6 +37,9 @@ public class BalanceBeamTilt : MonoBehaviour
     
     [Tooltip("Smoothing speed for movement")]
     public float smoothSpeed = 5f;
+    
+    [Tooltip("Parent pivot point that rotates")]
+    public Transform rotationPivot;
 
     [Header("Color Feedback")]
     public SpriteRenderer beamRenderer;
@@ -59,6 +62,15 @@ public class BalanceBeamTilt : MonoBehaviour
         {
             beamRenderer = GetComponent<SpriteRenderer>();
         }
+        
+        if (rotationPivot == null)
+        {
+            rotationPivot = transform.parent;
+            if (rotationPivot != null && rotationPivot.name != "RotationPivot")
+            {
+                Debug.LogWarning("Beam's parent is not RotationPivot. Beam rotation may not work correctly.");
+            }
+        }
     }
 
     // Update is called once per frame
@@ -66,19 +78,17 @@ public class BalanceBeamTilt : MonoBehaviour
     {
         currentPosition = Mathf.RoundToInt(Mathf.Lerp(currentPosition, targetPosition, Time.deltaTime * smoothSpeed));
         
-        // visual transformation
-        if (useRotation){
+        if (rotationPivot != null)
+        {
             float angle = currentPosition - 90; // Convert to -90 to +90 range
-            transform.rotation = Quaternion.Euler(0, 0, -angle);
+            rotationPivot.rotation = Quaternion.Euler(0, 0, -angle);
+            Debug.Log($"Rotating pivot: angle={angle}, currentPosition={currentPosition}, rotationPivot.rotation={rotationPivot.rotation}");
         }
         else
         {
-            // move the beam to match the state
-            float normalizedPos = (currentPosition - minPosition) / (float)(maxPosition - minPosition);
-            float xPos = Mathf.Lerp(-2f, 2f, normalizedPos);
-            transform.localPosition = new Vector3(xPos, transform.localPosition.y, transform.localPosition.z);
+            Debug.LogWarning("RotationPivot is null rotationPivot=" + rotationPivot);
+            Debug.LogWarning("transform.parent=" + transform.parent);
         }
-
     }
 
     /* The function UpdateBalance serves to calculate the current weights of each side
@@ -97,6 +107,17 @@ public class BalanceBeamTilt : MonoBehaviour
 
         targetPosition = centerPosition + Mathf.RoundToInt(normCharge * (maxPosition - centerPosition));
         targetPosition = Mathf.Clamp(targetPosition, minPosition, maxPosition);
+        Debug.Log($"UpdateBalance: currentCharge={currentCharge}, targetCharge={targetCharge}, chargeDiff={chargeDiff}, newTargetPosition={targetPosition}");
+    }
+
+ 
+    // Initialize beam position to show target charge (before any elements added)
+    public void InitializeBeamPosition(int targetCharge)
+    {
+        UpdateBalance(0, -targetCharge);
+        currentPosition = targetPosition;
+        targetPosition = currentPosition;
+        Debug.Log($"InitializeBeamPosition called with targetCharge={targetCharge}, currentPosition={currentPosition}, targetPosition={targetPosition}");
     }
 
     /*

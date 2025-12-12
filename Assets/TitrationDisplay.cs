@@ -43,6 +43,13 @@ public class TitrationDisplay : MonoBehaviour
             {
                 titrationManager.targetCharge = currentCompound.targetCharge;
                 titrationManager.PrintChargeInfo();
+                
+                // Initialize beam position to show the target
+                BalanceBeamTilt beam = titrationManager.balanceBeam;
+                if (beam != null)
+                {
+                    beam.InitializeBeamPosition(currentCompound.targetCharge);
+                }
             }
         }
         else
