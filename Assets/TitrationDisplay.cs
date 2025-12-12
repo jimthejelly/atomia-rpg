@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class TitrationDisplay : MonoBehaviour
 {
@@ -8,21 +10,34 @@ public class TitrationDisplay : MonoBehaviour
     private bool wasBalanced = false;
     private float balancedTime = 0f;
     private const float WIN_TIME = 2f; // Need 2 seconds balanced to win
+    
+    public TextMeshProUGUI compoundDisplayText; // Assign in Inspector
+    public TextMeshProUGUI leftChargeText; // Assign in Inspector
+    public TextMeshProUGUI rightChargeText; // Assign in Inspector
+
 
     private void Start()
     {
         titrationManager = FindObjectOfType<TitrationManagerRedux>();
-        Debug.Log($"Found TitrationManagerRedux: {titrationManager != null}");
         
-        compoundManager = FindObjectOfType<Compound>();
+        compoundManager = Compound.instance;
         Debug.Log($"Found Compound manager: {compoundManager != null}");
 
-        // Load a random compound
         if (compoundManager != null)
         {
             currentCompound = compoundManager.GetRandomCompound();
             Debug.Log($"Goal: balance {currentCompound.name} ({currentCompound.formula})");
             Debug.Log($"Target charge: {currentCompound.targetCharge}");
+            
+            if (compoundDisplayText != null)
+            {
+                compoundDisplayText.text = currentCompound.name;
+                Debug.Log($"Display text set to: {compoundDisplayText.text}");
+            }
+            else
+            {
+                Debug.LogError("compoundDisplayText is not assigned!");
+            }
             
             if (titrationManager != null)
             {
@@ -43,6 +58,16 @@ public class TitrationDisplay : MonoBehaviour
 
         bool isBalanced = titrationManager.IsBalanced();
         int leftCharge = titrationManager.GetLeftCharge();
+        
+        if (leftChargeText != null)
+        {
+            leftChargeText.text = $"Left: {leftCharge}";
+        }
+        
+        if (rightChargeText != null)
+        {
+            rightChargeText.text = $"Target: {titrationManager.targetCharge}";
+        }
         
         bool canWin = leftCharge > 0 && isBalanced;
 
