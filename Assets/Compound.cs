@@ -45,12 +45,9 @@ public class Compound : MonoBehaviour
     {
         compounds = new List<CompoundData>
         {
-            new CompoundData("Methane", "CH₄", 0),
-            new CompoundData("Water", "H₂O", 0),
-            new CompoundData("Ammonia", "NH₃", 0),
-            new CompoundData("Carbon Dioxide", "CO₂", 0),
-            new CompoundData("Hydrogen Cyanide", "HCN", 0),
-            new CompoundData("Boron Trihydride", "BH₃", 0)
+            new CompoundData("Methane", "CH₄", 8),
+            new CompoundData("Hydrogen Cyanide", "HCN", 2),
+            new CompoundData("Boron Trihydride", "BH₃", 6)
         };
     }
 
