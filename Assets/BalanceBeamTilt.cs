@@ -52,11 +52,15 @@ public class BalanceBeamTilt : MonoBehaviour
     // Current state
     public int currentPosition;
     private int targetPosition;
+    private bool initialized = false;
 
     void Start()
     {
-        currentPosition = centerPosition;
-        targetPosition = centerPosition;
+        if (!initialized)
+        {
+            currentPosition = centerPosition;
+            targetPosition = centerPosition;
+        }
 
         if (beamRenderer == null)
         {
@@ -82,7 +86,6 @@ public class BalanceBeamTilt : MonoBehaviour
         {
             float angle = currentPosition - 90; // Convert to -90 to +90 range
             rotationPivot.rotation = Quaternion.Euler(0, 0, -angle);
-            Debug.Log($"Rotating pivot: angle={angle}, currentPosition={currentPosition}, rotationPivot.rotation={rotationPivot.rotation}");
         }
         else
         {
@@ -107,7 +110,6 @@ public class BalanceBeamTilt : MonoBehaviour
 
         targetPosition = centerPosition + Mathf.RoundToInt(normCharge * (maxPosition - centerPosition));
         targetPosition = Mathf.Clamp(targetPosition, minPosition, maxPosition);
-        Debug.Log($"UpdateBalance: currentCharge={currentCharge}, targetCharge={targetCharge}, chargeDiff={chargeDiff}, newTargetPosition={targetPosition}");
     }
 
  
@@ -117,6 +119,7 @@ public class BalanceBeamTilt : MonoBehaviour
         UpdateBalance(0, -targetCharge);
         currentPosition = targetPosition;
         targetPosition = currentPosition;
+        initialized = true;
         Debug.Log($"InitializeBeamPosition called with targetCharge={targetCharge}, currentPosition={currentPosition}, targetPosition={targetPosition}");
     }
 
