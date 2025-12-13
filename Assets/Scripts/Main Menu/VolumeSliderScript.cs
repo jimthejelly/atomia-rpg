@@ -32,6 +32,7 @@ public class VolumeSliderScript : MonoBehaviour, IPointerUpHandler, IMoveHandler
         AudioListener.volume = 0.01F;
         volumeLevel = volumeSlider.value;
         volumeLabel.text = Math.Round(volumeLevel * 100).ToString();
+        volumeLabel.rectTransform.anchoredPosition = new Vector2(volumeLabel.rectTransform.anchoredPosition.x, -20f);
         volumeSlider.onValueChanged.AddListener(UpdateVolume);
     }
 

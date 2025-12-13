@@ -3,7 +3,11 @@ guid: aa23c8af3f3a8bf1381215b0a3b61923
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - volumeSlider: {fileID: 7604154399357759663, guid: be571b9e3e884e9b4a3a74b8c3566d03, type: 3}
+  - qualityDropdown: {fileID: 4876693702233973158, guid: ae7b16bc7703b966ea7b4e712ffe1b56, type: 3}
+  - saveButton: {fileID: 576536689785479941, guid: a118e5e20245436ee90bcb8f809fb5f9, type: 3}
+  - loadButton: {fileID: 9173283179544099713, guid: e4c50bdda0bb2f3dc9866efaf7a9af5c, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
